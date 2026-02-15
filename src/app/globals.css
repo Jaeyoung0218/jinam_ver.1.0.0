@@ -1,0 +1,26 @@
+﻿@import "tailwindcss";
+
+:root {
+  --background: #f5f7fb;
+  --foreground: #1d2742;
+  --brand-primary: #1d2742;
+  --brand-point: #ff2e63;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-noto-sans-tc);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-noto-sans-tc), "Noto Sans TC", sans-serif;
+}
