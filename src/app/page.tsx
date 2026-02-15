@@ -44,6 +44,13 @@ const copy = {
     available: "\u53ef\u7528",
     total: "\u7e3d\u6578",
     updated: "\u66f4\u65b0\u6642\u9593",
+    partnerTitle: "\u5408\u4f5c\u8a62\u554f",
+    partnerDesc: "\u586b\u5beb\u5f8c\u5c07\u9001\u51fa\u7d66\u71df\u904b\u5718\u968a",
+    companyLabel: "\u516c\u53f8\u540d\u7a31",
+    contactNameLabel: "\u806f\u7d61\u4eba",
+    emailLabel: "\u806f\u7d61\u4fe1\u7bb1",
+    messageLabel: "\u8a62\u554f\u5167\u5bb9",
+    sendInquiry: "\u9001\u51fa\u8a62\u554f",
   },
   ko: {
     appName: "\uc9c4\ub0a8 Jinam",
@@ -61,6 +68,13 @@ const copy = {
     available: "\uc0ac\uc6a9 \uac00\ub2a5",
     total: "\uc804\uccb4",
     updated: "\uc5c5\ub370\uc774\ud2b8",
+    partnerTitle: "\uc81c\ud734 \ubb38\uc758",
+    partnerDesc: "\uc791\uc131\ud558\uba74 \uc6b4\uc601\ud300\uc5d0 \ubc14\ub85c \uc804\ub2ec\ub429\ub2c8\ub2e4",
+    companyLabel: "\ud68c\uc0ac\uba85",
+    contactNameLabel: "\ub2f4\ub2f9\uc790\uba85",
+    emailLabel: "\uc5f0\ub77d \uc774\uba54\uc77c",
+    messageLabel: "\ubb38\uc758 \ub0b4\uc6a9",
+    sendInquiry: "\ubb38\uc758 \ubcf4\ub0b4\uae30",
   },
 } as const;
 
@@ -282,6 +296,66 @@ export default function Home() {
             );
           })}
         </div>
+      </section>
+
+      <section className="mt-6 rounded-2xl border border-[#E2E8F5] bg-white p-4 shadow-sm">
+        <div className="mb-3">
+          <h2 className={`text-lg font-bold text-[#1D2742] ${textTracking}`}>{text.partnerTitle}</h2>
+          <p className={`text-xs text-[#4B587C] ${textTracking}`}>{text.partnerDesc}</p>
+        </div>
+
+        <form action="https://formspree.io/f/mdalgwdq" method="POST" className="grid grid-cols-1 gap-3">
+          <input type="hidden" name="_subject" value="Jinam partnership inquiry" />
+
+          <label className="grid gap-1 text-sm font-medium text-[#1D2742]">
+            {text.companyLabel}
+            <input
+              name="company"
+              required
+              className="rounded-lg border border-[#D8E0F0] px-3 py-2 text-sm outline-none transition focus:border-[#FF2E63]"
+              placeholder="Jinam Corp."
+            />
+          </label>
+
+          <label className="grid gap-1 text-sm font-medium text-[#1D2742]">
+            {text.contactNameLabel}
+            <input
+              name="name"
+              required
+              className="rounded-lg border border-[#D8E0F0] px-3 py-2 text-sm outline-none transition focus:border-[#FF2E63]"
+              placeholder="Jane Kim"
+            />
+          </label>
+
+          <label className="grid gap-1 text-sm font-medium text-[#1D2742]">
+            {text.emailLabel}
+            <input
+              type="email"
+              name="email"
+              required
+              className="rounded-lg border border-[#D8E0F0] px-3 py-2 text-sm outline-none transition focus:border-[#FF2E63]"
+              placeholder="name@company.com"
+            />
+          </label>
+
+          <label className="grid gap-1 text-sm font-medium text-[#1D2742]">
+            {text.messageLabel}
+            <textarea
+              name="message"
+              required
+              rows={5}
+              className="rounded-lg border border-[#D8E0F0] px-3 py-2 text-sm outline-none transition focus:border-[#FF2E63]"
+              placeholder="Partnership details..."
+            />
+          </label>
+
+          <button
+            type="submit"
+            className="mt-1 w-full rounded-lg bg-[#1D2742] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#121a30]"
+          >
+            {text.sendInquiry}
+          </button>
+        </form>
       </section>
     </main>
   );
