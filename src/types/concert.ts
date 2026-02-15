@@ -19,6 +19,7 @@ export type Concert = {
   artist: string;
   venue: Venue;
   date: string;
+  endDate?: string;
   startTime: string;
   ticketUrl: string;
   lineOpenChatUrl: string;
