@@ -3,36 +3,132 @@
     "id": "ive-kspo-1",
     "artist": "IVE",
     "venue": "KSPO Dome",
-    "date": "2026-02-14"
+    "date": "2026-02-14",
+    "startTime": "18:00",
+    "ticketUrl": "https://tickets.example.com/ive-kspo-1",
+    "lineOpenChatUrl": "https://line.me/ti/g/jinam-ive-kspo",
+    "posterTone": "pink",
+    "state": {
+      "goodsStatus": "Official light stick stock is stable.",
+      "crowdLevel": "Busy",
+      "note": "Queue starts near gate 2, fast lane is open.",
+      "updatedAt": "2026-02-14T15:20:00+09:00"
+    },
+    "miniGuide": {
+      "entryTip": "Bring passport and mobile ticket QR.",
+      "lastTrainTip": "Line 8 last train to Jamsil around 00:12.",
+      "transportTip": "Use Exit 3 for shortest path to KSPO Dome.",
+      "noticeTip": "Keep rain poncho ready for sudden evening showers."
+    }
   },
   {
     "id": "nctwish-handball-1",
     "artist": "NCT WISH",
     "venue": "Handball",
-    "date": "2026-02-14"
+    "date": "2026-02-14",
+    "startTime": "19:00",
+    "ticketUrl": "https://tickets.example.com/nctwish-handball-1",
+    "lineOpenChatUrl": "https://line.me/ti/g/jinam-nctwish-handball",
+    "posterTone": "violet",
+    "state": {
+      "goodsStatus": "Photo card sets are low in stock.",
+      "crowdLevel": "Normal",
+      "note": "Outside booth line moves quickly every 10 minutes.",
+      "updatedAt": "2026-02-14T15:10:00+09:00"
+    },
+    "miniGuide": {
+      "entryTip": "Prepare ID and mobile battery above 30%.",
+      "lastTrainTip": "Line 5 transfer recommended before 23:50.",
+      "transportTip": "Take station locker first, then move to venue.",
+      "noticeTip": "Use official queue signs only and avoid fan-run lines."
+    }
   },
   {
     "id": "newjeans-olympic-1",
     "artist": "NewJeans",
     "venue": "Olympic Hall",
-    "date": "2026-02-16"
+    "date": "2026-02-16",
+    "startTime": "18:30",
+    "ticketUrl": "https://tickets.example.com/newjeans-olympic-1",
+    "lineOpenChatUrl": "https://line.me/ti/g/jinam-newjeans-olympic",
+    "posterTone": "sky",
+    "state": {
+      "goodsStatus": "Main MD starts selling at 14:00.",
+      "crowdLevel": "Safe",
+      "note": "Merch booth opens early, crowd is still light.",
+      "updatedAt": "2026-02-16T13:40:00+09:00"
+    },
+    "miniGuide": {
+      "entryTip": "Queue starts by zone color printed on ticket.",
+      "lastTrainTip": "Return route via Mongchontoseong is smoother.",
+      "transportTip": "Olympic Hall is 10 minutes walk from station.",
+      "noticeTip": "Warm clothing is recommended after 9 PM."
+    }
   },
   {
     "id": "aespa-kspo-2",
     "artist": "aespa",
     "venue": "KSPO Dome",
-    "date": "2026-02-18"
+    "date": "2026-02-18",
+    "startTime": "19:30",
+    "ticketUrl": "https://tickets.example.com/aespa-kspo-2",
+    "lineOpenChatUrl": "https://line.me/ti/g/jinam-aespa-kspo",
+    "posterTone": "amber",
+    "state": {
+      "goodsStatus": "Acrylic stands almost sold out.",
+      "crowdLevel": "Busy",
+      "note": "Crowd increases quickly after office hours.",
+      "updatedAt": "2026-02-18T16:05:00+09:00"
+    },
+    "miniGuide": {
+      "entryTip": "Use bag check lane for faster entry.",
+      "lastTrainTip": "Secure taxi app backup after 23:30.",
+      "transportTip": "Locker near Exit 1 is less crowded before 17:00.",
+      "noticeTip": "Photo zones close 15 minutes before showtime."
+    }
   },
   {
     "id": "riize-olympic-2",
     "artist": "RIIZE",
     "venue": "Olympic Hall",
-    "date": "2026-02-21"
+    "date": "2026-02-21",
+    "startTime": "18:00",
+    "ticketUrl": "https://tickets.example.com/riize-olympic-2",
+    "lineOpenChatUrl": "https://line.me/ti/g/jinam-riize-olympic",
+    "posterTone": "emerald",
+    "state": {
+      "goodsStatus": "All keyring variants in stock now.",
+      "crowdLevel": "Normal",
+      "note": "Fan cafe line and official booth line are separated.",
+      "updatedAt": "2026-02-21T14:30:00+09:00"
+    },
+    "miniGuide": {
+      "entryTip": "Bring paper backup for QR code.",
+      "lastTrainTip": "Line 9 transfer window is tight after 00:00.",
+      "transportTip": "Walkway is slippery on rainy nights.",
+      "noticeTip": "Verify gate number again after merch purchase."
+    }
   },
   {
     "id": "twice-handball-2",
     "artist": "TWICE",
     "venue": "Handball",
-    "date": "2026-02-24"
+    "date": "2026-02-24",
+    "startTime": "19:00",
+    "ticketUrl": "https://tickets.example.com/twice-handball-2",
+    "lineOpenChatUrl": "https://line.me/ti/g/jinam-twice-handball",
+    "posterTone": "indigo",
+    "state": {
+      "goodsStatus": "T-shirt M size restock expected at 17:00.",
+      "crowdLevel": "Full",
+      "note": "Main waiting zone is close to maximum capacity.",
+      "updatedAt": "2026-02-24T16:50:00+09:00"
+    },
+    "miniGuide": {
+      "entryTip": "Arrive 90 minutes early for MD and photos.",
+      "lastTrainTip": "Check last train alerts in LINE room before exit.",
+      "transportTip": "Use Jamsil transfer for airport bus connection.",
+      "noticeTip": "Crowd control barriers may change after encore."
+    }
   }
 ]
