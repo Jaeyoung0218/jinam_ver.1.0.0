@@ -1,0 +1,70 @@
+[
+  {
+    "id": "perf-1",
+    "title_ko": "IVE 2026 FAN CONCERT",
+    "title_zh_tw": "IVE 2026 粉絲演唱會",
+    "artist_name": "IVE",
+    "start_date": "2026-03-21",
+    "end_date": "2026-03-23",
+    "venue_id": "venue-kspo",
+    "poster_url": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f",
+    "status": "scheduled",
+    "venue": {
+      "id": "venue-kspo",
+      "slug": "kspo-dome",
+      "name_ko": "KSPO DOME",
+      "name_zh_tw": "KSPO DOME"
+    },
+    "ticket_links": [
+      {
+        "id": "ticket-1",
+        "provider": "YES24",
+        "url": "https://ticket.yes24.com/",
+        "is_global": true
+      }
+    ]
+  },
+  {
+    "id": "perf-2",
+    "title_ko": "NCT WISH LIVE IN SEOUL",
+    "title_zh_tw": "NCT WISH 首爾演唱會",
+    "artist_name": "NCT WISH",
+    "start_date": "2026-03-29",
+    "end_date": "2026-03-29",
+    "venue_id": "venue-handball",
+    "poster_url": "https://images.unsplash.com/photo-1501386761578-eac5c94b800a",
+    "status": "scheduled",
+    "venue": {
+      "id": "venue-handball",
+      "slug": "handball",
+      "name_ko": "SK핸드볼경기장",
+      "name_zh_tw": "手球館"
+    },
+    "ticket_links": []
+  },
+  {
+    "id": "perf-3",
+    "title_ko": "NewJeans SPECIAL STAGE",
+    "title_zh_tw": "NewJeans 特別舞台",
+    "artist_name": "NewJeans",
+    "start_date": "2026-04-02",
+    "end_date": "2026-04-02",
+    "venue_id": "venue-olympic",
+    "poster_url": "https://images.unsplash.com/photo-1464375117522-1311dd7d0b5f",
+    "status": "scheduled",
+    "venue": {
+      "id": "venue-olympic",
+      "slug": "olympic-hall",
+      "name_ko": "올림픽홀",
+      "name_zh_tw": "奧林匹克廳"
+    },
+    "ticket_links": [
+      {
+        "id": "ticket-3",
+        "provider": "WorldNol",
+        "url": "https://www.worldnol.com/",
+        "is_global": false
+      }
+    ]
+  }
+]

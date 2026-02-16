@@ -1,0 +1,29 @@
+{
+  "Dashboard": {
+    "title": "奧林匹克公園演唱會儀表板",
+    "subtitle": "支援韓文 / 繁體中文",
+    "filterLabel": "場館篩選",
+    "sortLabel": "排序",
+    "sortDateAsc": "日期由近到遠",
+    "sortDateDesc": "日期由遠到近",
+    "dday": "D-Day",
+    "ticket": "立即購票",
+    "comingSoon": "敬請期待",
+    "globalTicket": "全球購票",
+    "admin": "管理員檢核",
+    "language": "語言"
+  },
+  "Venues": {
+    "all": "全部",
+    "kspo": "KSPO DOME",
+    "handball": "手球館",
+    "olympic": "奧林匹克廳"
+  },
+  "Admin": {
+    "title": "管理員檢核儀表板",
+    "subtitle": "審核爬蟲結果並決定是否上線",
+    "approve": "核准",
+    "hold": "保留",
+    "edit": "編輯"
+  }
+}

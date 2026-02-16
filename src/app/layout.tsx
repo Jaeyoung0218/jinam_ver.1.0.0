@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Noto_Sans_TC } from "next/font/google";
 import "./globals.css";
 
@@ -9,8 +9,8 @@ const notoSansTC = Noto_Sans_TC({
 });
 
 export const metadata: Metadata = {
-  title: "?뉐뜔 (Jinam)",
-  description: "K-Pop Concert & Locker Guide for Taiwan Fans",
+  title: "Jinam",
+  description: "Olympic Park performance dashboard for KO and ZH-TW users",
 };
 
 export default function RootLayout({

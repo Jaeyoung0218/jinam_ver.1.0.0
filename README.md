@@ -18,6 +18,22 @@ Jinam is a mobile-first web service for Taiwanese K-pop fans visiting Olympic Pa
 - Partnership inquiry form via Formspree
   - success/failure feedback and retry flow
 
+## Crawling Pipeline & Dashboard (New)
+
+- Python crawler (`crawler/run_pipeline.py`)
+  - Olympic Park source scraping with Playwright
+  - WorldNol / YES24 ticket candidate mapping
+  - OpenAI-based ZH-TW translation (`gpt-4o-mini`)
+  - Supabase upsert for performances and ticket links
+- Supabase schema: `supabase/schema.sql`
+- Next.js APIs
+  - `GET /api/performances`
+  - `GET /api/performance/[id]`
+  - `POST /api/jobs/archive` (archive finished+7days)
+- i18n with `next-intl` (KO, ZH-TW)
+  - localized pages: `/ko`, `/zh-TW`
+  - admin review page: `/ko/admin`, `/zh-TW/admin`
+
 ## Project Structure
 
 - `src/app/page.tsx`: Main page UI/UX

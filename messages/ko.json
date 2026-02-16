@@ -1,0 +1,29 @@
+{
+  "Dashboard": {
+    "title": "올림픽공원 공연 대시보드",
+    "subtitle": "한국어 / 번체(ZH-TW) 지원",
+    "filterLabel": "공연장 필터",
+    "sortLabel": "정렬",
+    "sortDateAsc": "날짜 오름차순",
+    "sortDateDesc": "날짜 내림차순",
+    "dday": "D-Day",
+    "ticket": "예매하기",
+    "comingSoon": "敬請期待",
+    "globalTicket": "글로벌 예매",
+    "admin": "관리자 검수",
+    "language": "언어"
+  },
+  "Venues": {
+    "all": "전체",
+    "kspo": "KSPO DOME",
+    "handball": "핸드볼경기장",
+    "olympic": "올림픽홀"
+  },
+  "Admin": {
+    "title": "관리자 검수 대시보드",
+    "subtitle": "크롤링 결과 승인/보류/수정",
+    "approve": "승인",
+    "hold": "보류",
+    "edit": "수정"
+  }
+}
