@@ -1,134 +1,69 @@
 [
   {
-    "id": "ive-kspo-1",
+    "id": "ive-kspo-2026-03",
+    "title": { "ko": "IVE 2026 FAN CONCERT", "zh": "IVE 2026 粉絲演唱會" },
     "artist": "IVE",
-    "venue": "KSPO Dome",
-    "date": "2026-02-14",
-    "startTime": "18:00",
-    "ticketUrl": "https://tickets.example.com/ive-kspo-1",
-    "lineOpenChatUrl": "https://line.me/ti/g/jinam-ive-kspo",
-    "posterTone": "pink",
-    "state": {
-      "goodsStatus": "Official light stick stock is stable.",
-      "crowdLevel": "Busy",
-      "note": "Queue starts near gate 2, fast lane is open.",
-      "updatedAt": "2026-02-14T15:20:00+09:00"
+    "venue": { "name": "Olympic Park", "room": "KSPO DOME" },
+    "date": { "start": "2026-03-21T18:00:00+09:00", "end": "2026-03-23T22:00:00+09:00", "time": "18:00" },
+    "images": { "poster": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1200&q=80" },
+    "links": {
+      "global": "https://www.worldnol.com/search?q=IVE",
+      "kr": "https://ticket.yes24.com/New/Perf/Detail/Detail.aspx?IdPerf=99999",
+      "lineChat": "https://line.me/ti/g/jinam-ive-kspo"
     },
-    "miniGuide": {
-      "entryTip": "Bring passport and mobile ticket QR.",
-      "lastTrainTip": "Line 8 last train to Jamsil around 00:12.",
-      "transportTip": "Use Exit 3 for shortest path to KSPO Dome.",
-      "noticeTip": "Keep rain poncho ready for sudden evening showers."
-    }
+    "category": "concert"
   },
   {
-    "id": "nctwish-handball-1",
+    "id": "nctwish-handball-2026-03",
+    "title": { "ko": "NCT WISH LIVE IN SEOUL", "zh": "NCT WISH 首爾演唱會" },
     "artist": "NCT WISH",
-    "venue": "Handball",
-    "date": "2026-02-14",
-    "startTime": "19:00",
-    "ticketUrl": "https://tickets.example.com/nctwish-handball-1",
-    "lineOpenChatUrl": "https://line.me/ti/g/jinam-nctwish-handball",
-    "posterTone": "violet",
-    "state": {
-      "goodsStatus": "Photo card sets are low in stock.",
-      "crowdLevel": "Normal",
-      "note": "Outside booth line moves quickly every 10 minutes.",
-      "updatedAt": "2026-02-14T15:10:00+09:00"
+    "venue": { "name": "Olympic Park", "room": "Handball" },
+    "date": { "start": "2026-03-29T19:00:00+09:00", "end": "2026-03-29T22:00:00+09:00", "time": "19:00" },
+    "images": { "poster": "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80" },
+    "links": {
+      "kr": "https://ticket.yes24.com/New/Perf/Detail/Detail.aspx?IdPerf=88888",
+      "lineChat": "https://line.me/ti/g/jinam-nctwish-handball"
     },
-    "miniGuide": {
-      "entryTip": "Prepare ID and mobile battery above 30%.",
-      "lastTrainTip": "Line 5 transfer recommended before 23:50.",
-      "transportTip": "Take station locker first, then move to venue.",
-      "noticeTip": "Use official queue signs only and avoid fan-run lines."
-    }
+    "category": "concert"
   },
   {
-    "id": "newjeans-olympic-1",
+    "id": "newjeans-olympic-2026-04",
+    "title": { "ko": "NewJeans SPECIAL STAGE", "zh": "NewJeans 特別舞台" },
     "artist": "NewJeans",
-    "venue": "Olympic Hall",
-    "date": "2026-02-16",
-    "startTime": "18:30",
-    "ticketUrl": "https://tickets.example.com/newjeans-olympic-1",
-    "lineOpenChatUrl": "https://line.me/ti/g/jinam-newjeans-olympic",
-    "posterTone": "sky",
-    "state": {
-      "goodsStatus": "Main MD starts selling at 14:00.",
-      "crowdLevel": "Safe",
-      "note": "Merch booth opens early, crowd is still light.",
-      "updatedAt": "2026-02-16T13:40:00+09:00"
+    "venue": { "name": "Olympic Park", "room": "Olympic Hall" },
+    "date": { "start": "2026-04-02T18:30:00+09:00", "end": "2026-04-02T21:30:00+09:00", "time": "18:30" },
+    "images": { "poster": "https://images.unsplash.com/photo-1464375117522-1311dd7d0b5f?auto=format&fit=crop&w=1200&q=80" },
+    "links": {
+      "global": "https://www.worldnol.com/search?q=NewJeans",
+      "lineChat": "https://line.me/ti/g/jinam-newjeans-olympic"
     },
-    "miniGuide": {
-      "entryTip": "Queue starts by zone color printed on ticket.",
-      "lastTrainTip": "Return route via Mongchontoseong is smoother.",
-      "transportTip": "Olympic Hall is 10 minutes walk from station.",
-      "noticeTip": "Warm clothing is recommended after 9 PM."
-    }
+    "category": "fanmeeting"
   },
   {
-    "id": "aespa-kspo-2",
+    "id": "aespa-kspo-2026-04",
+    "title": { "ko": "aespa LIVE TOUR", "zh": "aespa 世界巡演" },
     "artist": "aespa",
-    "venue": "KSPO Dome",
-    "date": "2026-02-18",
-    "startTime": "19:30",
-    "ticketUrl": "https://tickets.example.com/aespa-kspo-2",
-    "lineOpenChatUrl": "https://line.me/ti/g/jinam-aespa-kspo",
-    "posterTone": "amber",
-    "state": {
-      "goodsStatus": "Acrylic stands almost sold out.",
-      "crowdLevel": "Busy",
-      "note": "Crowd increases quickly after office hours.",
-      "updatedAt": "2026-02-18T16:05:00+09:00"
+    "venue": { "name": "Olympic Park", "room": "KSPO DOME" },
+    "date": { "start": "2026-04-11T19:30:00+09:00", "end": "2026-04-12T22:00:00+09:00", "time": "19:30" },
+    "images": { "poster": "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1200&q=80" },
+    "links": {
+      "global": "https://www.worldnol.com/search?q=aespa",
+      "kr": "https://ticket.yes24.com/New/Perf/Detail/Detail.aspx?IdPerf=77777",
+      "lineChat": "https://line.me/ti/g/jinam-aespa-kspo"
     },
-    "miniGuide": {
-      "entryTip": "Use bag check lane for faster entry.",
-      "lastTrainTip": "Secure taxi app backup after 23:30.",
-      "transportTip": "Locker near Exit 1 is less crowded before 17:00.",
-      "noticeTip": "Photo zones close 15 minutes before showtime."
-    }
+    "category": "concert"
   },
   {
-    "id": "riize-olympic-2",
+    "id": "riize-olympic-2026-05",
+    "title": { "ko": "RIIZE SHOWCASE", "zh": "RIIZE 特別展演" },
     "artist": "RIIZE",
-    "venue": "Olympic Hall",
-    "date": "2026-02-21",
-    "startTime": "18:00",
-    "ticketUrl": "https://tickets.example.com/riize-olympic-2",
-    "lineOpenChatUrl": "https://line.me/ti/g/jinam-riize-olympic",
-    "posterTone": "emerald",
-    "state": {
-      "goodsStatus": "All keyring variants in stock now.",
-      "crowdLevel": "Normal",
-      "note": "Fan cafe line and official booth line are separated.",
-      "updatedAt": "2026-02-21T14:30:00+09:00"
+    "venue": { "name": "Olympic Park", "room": "Olympic Hall" },
+    "date": { "start": "2026-05-03T18:00:00+09:00", "end": "2026-05-03T21:00:00+09:00", "time": "18:00" },
+    "images": { "poster": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1200&q=80" },
+    "links": {
+      "kr": "https://ticket.yes24.com/New/Perf/Detail/Detail.aspx?IdPerf=66666",
+      "lineChat": "https://line.me/ti/g/jinam-riize-olympic"
     },
-    "miniGuide": {
-      "entryTip": "Bring paper backup for QR code.",
-      "lastTrainTip": "Line 9 transfer window is tight after 00:00.",
-      "transportTip": "Walkway is slippery on rainy nights.",
-      "noticeTip": "Verify gate number again after merch purchase."
-    }
-  },
-  {
-    "id": "twice-handball-2",
-    "artist": "TWICE",
-    "venue": "Handball",
-    "date": "2026-02-24",
-    "startTime": "19:00",
-    "ticketUrl": "https://tickets.example.com/twice-handball-2",
-    "lineOpenChatUrl": "https://line.me/ti/g/jinam-twice-handball",
-    "posterTone": "indigo",
-    "state": {
-      "goodsStatus": "T-shirt M size restock expected at 17:00.",
-      "crowdLevel": "Full",
-      "note": "Main waiting zone is close to maximum capacity.",
-      "updatedAt": "2026-02-24T16:50:00+09:00"
-    },
-    "miniGuide": {
-      "entryTip": "Arrive 90 minutes early for MD and photos.",
-      "lastTrainTip": "Check last train alerts in LINE room before exit.",
-      "transportTip": "Use Jamsil transfer for airport bus connection.",
-      "noticeTip": "Crowd control barriers may change after encore."
-    }
+    "category": "fanmeeting"
   }
 ]

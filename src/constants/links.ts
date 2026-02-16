@@ -1,1 +1,6 @@
-export const NOTION_SURVIVAL_MAP_URL = "https://www.notion.so/replace-with-your-survival-map";
+import type { SupportedLocale } from "@/types/concert";
+
+export const NOTION_TIPS_URL: Record<SupportedLocale, string> = {
+  ko: "https://{notion-ko-url}",
+  tw: "https://{notion-tw-url}",
+};

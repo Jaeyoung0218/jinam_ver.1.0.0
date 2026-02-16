@@ -2,6 +2,15 @@ import { routing } from "@/i18n/routing";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: {
+    default: "Jinam 指南",
+    template: "%s | Jinam",
+  },
+  description: "KO/ZH-TW K-Pop concert guide with LINE community and survival map",
+};
 
 type Props = {
   children: React.ReactNode;
