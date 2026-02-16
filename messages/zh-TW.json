@@ -1,30 +1,25 @@
 {
-  "common": {
-    "appName": "Jinam 指南",
-    "language": "語言",
-    "admin": "管理員檢核",
-    "all": "全部"
-  },
-  "concert": {
+  "Dashboard": {
     "title": "奧林匹克公園演唱會儀表板",
     "subtitle": "支援韓文 / 繁體中文",
-    "linePromoTitle": "台灣粉絲專用 LINE 聊天室",
-    "linePromoSubtitle": "現場狀況與票券資訊分享",
-    "viewDetail": "查看詳情",
-    "ticketWorldNol": "購票 (WorldNol)",
-    "ticketYes24": "購票 (YES24)",
-    "comingSoon": "敬請期待"
+    "filterLabel": "場館篩選",
+    "sortLabel": "排序",
+    "sortDateAsc": "日期由近到遠",
+    "sortDateDesc": "日期由遠到近",
+    "dday": "D-Day",
+    "ticket": "立即購票",
+    "comingSoon": "敬請期待",
+    "globalTicket": "全球購票",
+    "admin": "管理員檢核",
+    "language": "語言"
   },
-  "map": {
-    "title": "生存地圖",
-    "lockerError": "無法取得置物櫃 API 資料。",
-    "lineAsk": "在 LINE 詢問最新狀況"
+  "Venues": {
+    "all": "全部",
+    "kspo": "KSPO DOME",
+    "handball": "手球館",
+    "olympic": "奧林匹克廳"
   },
-  "tips": {
-    "title": "旅行小貼士",
-    "openNotion": "Open Notion Guide"
-  },
-  "admin": {
+  "Admin": {
     "title": "管理員檢核儀表板",
     "subtitle": "審核爬蟲結果並決定是否上線",
     "approve": "核准",

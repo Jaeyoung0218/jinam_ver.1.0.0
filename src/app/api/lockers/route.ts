@@ -1,6 +1,4 @@
-import { NextResponse } from "next/server";
-
-export const revalidate = 30;
+﻿import { NextResponse } from "next/server";
 
 const stations = [
   { id: "olympic-park", name: "Olympic Park Station", total: 20 },
@@ -15,15 +13,14 @@ function createAvailable(total: number): number {
 }
 
 export async function GET() {
-  const updatedAt = new Date().toISOString();
   const data = stations.map((station) => {
     const available = Math.max(0, Math.min(station.total, createAvailable(station.total)));
     return {
       ...station,
       available,
-      updatedAt,
+      updatedAt: new Date().toISOString(),
     };
   });
 
-  return NextResponse.json({ data, updatedAt });
+  return NextResponse.json({ data });
 }

@@ -7,7 +7,7 @@ type Props = {
 
 export default async function AdminPage({ params }: Props) {
   const { locale } = await params;
-  const t = await getTranslations("admin");
+  const t = await getTranslations("Admin");
   const items = await fetchPerformances();
 
   return (
