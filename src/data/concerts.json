@@ -6,7 +6,10 @@
     "date": "2026-02-14",
     "startTime": "18:00",
     "ticketUrl": "https://tickets.example.com/ive-kspo-1",
+    "worldNolTicketUrl": "https://www.worldnol.com/search?q=IVE",
+    "yes24TicketUrl": "https://ticket.yes24.com/New/Perf/Detail/Detail.aspx?IdPerf=99999",
     "lineOpenChatUrl": "https://line.me/ti/g/jinam-ive-kspo",
+    "koreanAddress": "서울특별시 송파구 올림픽로 424",
     "posterTone": "pink",
     "state": {
       "goodsStatus": "Official light stick stock is stable.",
@@ -28,7 +31,9 @@
     "date": "2026-02-14",
     "startTime": "19:00",
     "ticketUrl": "https://tickets.example.com/nctwish-handball-1",
+    "yes24TicketUrl": "https://ticket.yes24.com/New/Perf/Detail/Detail.aspx?IdPerf=88888",
     "lineOpenChatUrl": "https://line.me/ti/g/jinam-nctwish-handball",
+    "koreanAddress": "서울특별시 송파구 올림픽로 25",
     "posterTone": "violet",
     "state": {
       "goodsStatus": "Photo card sets are low in stock.",
@@ -50,7 +55,9 @@
     "date": "2026-02-16",
     "startTime": "18:30",
     "ticketUrl": "https://tickets.example.com/newjeans-olympic-1",
+    "worldNolTicketUrl": "https://www.worldnol.com/search?q=NewJeans",
     "lineOpenChatUrl": "https://line.me/ti/g/jinam-newjeans-olympic",
+    "koreanAddress": "서울특별시 송파구 올림픽로 424",
     "posterTone": "sky",
     "state": {
       "goodsStatus": "Main MD starts selling at 14:00.",
@@ -72,7 +79,10 @@
     "date": "2026-02-18",
     "startTime": "19:30",
     "ticketUrl": "https://tickets.example.com/aespa-kspo-2",
+    "worldNolTicketUrl": "https://www.worldnol.com/search?q=aespa",
+    "yes24TicketUrl": "https://ticket.yes24.com/New/Perf/Detail/Detail.aspx?IdPerf=77777",
     "lineOpenChatUrl": "https://line.me/ti/g/jinam-aespa-kspo",
+    "koreanAddress": "서울특별시 송파구 올림픽로 424",
     "posterTone": "amber",
     "state": {
       "goodsStatus": "Acrylic stands almost sold out.",
@@ -94,7 +104,9 @@
     "date": "2026-02-21",
     "startTime": "18:00",
     "ticketUrl": "https://tickets.example.com/riize-olympic-2",
+    "yes24TicketUrl": "https://ticket.yes24.com/New/Perf/Detail/Detail.aspx?IdPerf=66666",
     "lineOpenChatUrl": "https://line.me/ti/g/jinam-riize-olympic",
+    "koreanAddress": "서울특별시 송파구 올림픽로 424",
     "posterTone": "emerald",
     "state": {
       "goodsStatus": "All keyring variants in stock now.",
@@ -116,7 +128,10 @@
     "date": "2026-02-24",
     "startTime": "19:00",
     "ticketUrl": "https://tickets.example.com/twice-handball-2",
+    "worldNolTicketUrl": "https://www.worldnol.com/search?q=TWICE",
+    "yes24TicketUrl": "https://ticket.yes24.com/New/Perf/Detail/Detail.aspx?IdPerf=55555",
     "lineOpenChatUrl": "https://line.me/ti/g/jinam-twice-handball",
+    "koreanAddress": "서울특별시 송파구 올림픽로 25",
     "posterTone": "indigo",
     "state": {
       "goodsStatus": "T-shirt M size restock expected at 17:00.",

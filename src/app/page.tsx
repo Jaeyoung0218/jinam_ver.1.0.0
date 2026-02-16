@@ -1,7 +1,9 @@
 "use client";
 
 import concerts from "@/data/concerts.json";
-import BottomNav from "@/components/bottom-nav";
+import BottomNav from "@/components/ui/bottom-nav";
+import SurvivalMapFab from "@/components/concert/survival-map-fab";
+import LockerWidget from "@/components/map/locker-widget";
 import type { Concert, Venue } from "@/types/concert";
 import { CalendarDays, ChevronLeft, ChevronRight, Languages, MapPin, MessageCircle, UserRound } from "lucide-react";
 import Link from "next/link";
@@ -208,7 +210,7 @@ export default function Home() {
   };
 
   return (
-    <main className="mx-auto min-h-screen max-w-[760px] bg-[#F5F7FB] px-5 pb-28 pt-5">
+    <main className="mx-auto min-h-screen max-w-[760px] bg-[#F5F7FB] px-5 pb-28 pt-5 transition-all duration-200">
       <header className="sticky top-0 z-30 -mx-5 mb-5 border-b border-[#E7EAF1] bg-[#F5F7FB]/95 px-5 pb-4 pt-5 backdrop-blur">
         <div className="mb-3 flex items-center justify-between">
           <div>
@@ -372,6 +374,10 @@ export default function Home() {
           </div>
         )}
       </section>
+
+      <LockerWidget lineUrl={(concerts as Concert[])[0]?.lineOpenChatUrl} locale={locale} />
+
+      <SurvivalMapFab locale={locale} />
 
       <BottomNav active="concerts" />
     </main>

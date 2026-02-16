@@ -1,6 +1,8 @@
 import concerts from "@/data/concerts.json";
+import CopyAddressButton from "@/components/ui/copy-address-button";
+import { NOTION_SURVIVAL_MAP_URL } from "@/constants/links";
 import type { Concert } from "@/types/concert";
-import { CalendarDays, Clock3, MapPin, MessageCircle, Store, Train } from "lucide-react";
+import { CalendarDays, Clock3, ExternalLink, MapPin, MessageCircle, Store, Train } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -22,6 +24,8 @@ export default async function ConcertDetailPage({ params }: { params: Promise<{ 
   const { id } = await params;
   const concert = (concerts as Concert[]).find((item) => item.id === id);
   if (!concert) notFound();
+  const ticketUrl = concert.worldNolTicketUrl ?? concert.yes24TicketUrl ?? concert.ticketUrl;
+  const koreanAddress = concert.koreanAddress ?? "서울특별시 송파구 올림픽로 424";
 
   const crowdTone =
     concert.state.crowdLevel.toLowerCase() === "safe"
@@ -49,6 +53,14 @@ export default async function ConcertDetailPage({ params }: { params: Promise<{ 
 
         <div className="mt-4 grid grid-cols-1 gap-2 md:grid-cols-3">
           <a
+            href={ticketUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-xl bg-[#1D2742] px-3 py-2 text-center text-sm font-semibold text-white"
+          >
+            Book the ticket
+          </a>
+          <a
             href={concert.lineOpenChatUrl}
             target="_blank"
             rel="noreferrer"
@@ -57,17 +69,7 @@ export default async function ConcertDetailPage({ params }: { params: Promise<{ 
             <MessageCircle className="mr-1 inline h-4 w-4" />
             LINE Open Chat Join
           </a>
-          <a
-            href={concert.ticketUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-xl bg-[#1D2742] px-3 py-2 text-center text-sm font-semibold text-white"
-          >
-            Book the ticket
-          </a>
-          <Link href="/#partnership-form" className="rounded-xl border border-[#E2E8F5] bg-white px-3 py-2 text-center text-sm font-semibold text-[#1D2742]">
-            Partnership inquiry
-          </Link>
+          <CopyAddressButton address={koreanAddress} />
         </div>
       </header>
 
@@ -137,6 +139,17 @@ export default async function ConcertDetailPage({ params }: { params: Promise<{ 
         <Link href="/#locker" className="mt-3 inline-flex rounded-lg bg-[#1D2742] px-3 py-2 text-sm font-semibold text-white">
           Go to locker widget
         </Link>
+        <div className="mt-3">
+          <a
+            href={NOTION_SURVIVAL_MAP_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 rounded-lg border border-[#DCE3F2] bg-white px-3 py-2 text-xs font-semibold text-[#1D2742]"
+          >
+            Travel Tips (Notion)
+            <ExternalLink className="h-3.5 w-3.5" />
+          </a>
+        </div>
       </section>
     </main>
   );

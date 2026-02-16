@@ -1,4 +1,4 @@
-import BottomNav from "@/components/bottom-nav";
+import BottomNav from "@/components/ui/bottom-nav";
 import liveUpdates from "@/data/live-updates.json";
 import { CalendarClock, Filter, Search } from "lucide-react";
 
@@ -23,7 +23,7 @@ export default function LivePage() {
   const items = liveUpdates as LiveItem[];
 
   return (
-    <main className="mx-auto min-h-screen max-w-[1024px] bg-[#F5F7FB] px-5 pb-28 pt-5">
+    <main className="mx-auto min-h-screen max-w-[1024px] bg-[#F5F7FB] px-5 pb-28 pt-5 transition-all duration-200">
       <section className="rounded-2xl border border-[#E7EAF1] bg-white p-4 shadow-sm">
         <div className="mb-4 flex items-center justify-between">
           <h1 className="text-lg font-bold text-[#1D2742]">📸 現場實況</h1>

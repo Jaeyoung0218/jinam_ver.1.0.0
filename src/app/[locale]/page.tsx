@@ -4,6 +4,7 @@ import { getDDay } from "@/lib/utils/dday";
 import type { Performance } from "@/types/performance";
 import { CalendarDays, Globe, MapPin } from "lucide-react";
 import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 
 type Props = {
   params: Promise<{ locale: "ko" | "zh-TW" }>;
@@ -87,8 +88,7 @@ function PerformanceCard({ item, locale }: { item: Performance; locale: "ko" | "
     <article className="rounded-2xl border border-[#E2E8F5] bg-white p-3 shadow-sm">
       <div className="mb-3 h-40 overflow-hidden rounded-xl bg-[#E9EEF8]">
         {item.poster_url ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={item.poster_url} alt={title} className="h-full w-full object-cover" />
+          <Image src={item.poster_url} alt={title} width={800} height={320} className="h-full w-full object-cover" />
         ) : null}
       </div>
 

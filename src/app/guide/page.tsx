@@ -1,4 +1,4 @@
-import BottomNav from "@/components/bottom-nav";
+import BottomNav from "@/components/ui/bottom-nav";
 import { NOTION_SURVIVAL_MAP_URL } from "@/constants/links";
 import concerts from "@/data/concerts.json";
 import type { Concert } from "@/types/concert";

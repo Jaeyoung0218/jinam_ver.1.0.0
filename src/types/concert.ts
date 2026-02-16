@@ -22,7 +22,10 @@ export type Concert = {
   endDate?: string;
   startTime: string;
   ticketUrl: string;
+  worldNolTicketUrl?: string;
+  yes24TicketUrl?: string;
   lineOpenChatUrl: string;
+  koreanAddress?: string;
   posterTone: "pink" | "violet" | "sky" | "amber" | "emerald" | "indigo";
   state: ConcertState;
   miniGuide: MiniGuide;
