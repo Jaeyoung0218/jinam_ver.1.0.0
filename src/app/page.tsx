@@ -2,24 +2,13 @@
 
 import concerts from "@/data/concerts.json";
 import BottomNav from "@/components/bottom-nav";
-import { NOTION_SURVIVAL_MAP_URL } from "@/constants/links";
 import type { Concert, Venue } from "@/types/concert";
-import { CalendarDays, ChevronRight, Languages, MapPin, MessageCircle, UserRound, Warehouse } from "lucide-react";
+import { CalendarDays, ChevronLeft, ChevronRight, Languages, MapPin, MessageCircle, UserRound } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 type Locale = "zh-TW" | "ko";
 type VenueFilter = "All" | Venue;
-
-type LockerApiResponse = {
-  data: {
-    id: string;
-    name: string;
-    total: number;
-    available: number;
-    updatedAt: string;
-  }[];
-};
 
 const venues: VenueFilter[] = ["All", "KSPO Dome", "Handball", "Olympic Hall"];
 
@@ -172,10 +161,9 @@ function getConcertExpiryAt(concert: Concert) {
 export default function Home() {
   const [locale, setLocale] = useState<Locale>("zh-TW");
   const [filter, setFilter] = useState<VenueFilter>("All");
-  const [lockers, setLockers] = useState<LockerApiResponse["data"]>([]);
-  const [lockerError, setLockerError] = useState(false);
   const [concertsLoading, setConcertsLoading] = useState(true);
-  const [lockersLoading, setLockersLoading] = useState(true);
+  const [calendarYear, setCalendarYear] = useState(new Date().getFullYear());
+  const [calendarMonth, setCalendarMonth] = useState(new Date().getMonth() + 1);
 
   const isZhTw = locale === "zh-TW";
   const text = copy[locale];
@@ -201,43 +189,22 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    let mounted = true;
-
-    const fetchLockers = async () => {
-      try {
-        if (mounted && lockers.length === 0) setLockersLoading(true);
-        const response = await fetch("/api/lockers", { cache: "no-store" });
-        if (!response.ok) {
-          throw new Error("LOCKER_FETCH_FAILED");
-        }
-        const json: LockerApiResponse = await response.json();
-        if (mounted) {
-          setLockers(json.data);
-          setLockerError(false);
-          setLockersLoading(false);
-        }
-      } catch {
-        if (mounted) {
-          setLockers([]);
-          setLockerError(true);
-          setLockersLoading(false);
-        }
+  const changeCalendarMonth = (direction: "prev" | "next") => {
+    if (direction === "prev") {
+      if (calendarMonth === 1) {
+        setCalendarYear((prev) => prev - 1);
+        setCalendarMonth(12);
+      } else {
+        setCalendarMonth((prev) => prev - 1);
       }
-    };
-
-    fetchLockers();
-    const interval = setInterval(fetchLockers, 30000);
-    return () => {
-      mounted = false;
-      clearInterval(interval);
-    };
-  }, [lockers.length]);
-
-  const lockerDecision = (ratio: number) => {
-    if (ratio > 0.45) return { label: text.goNow, cls: "bg-emerald-100 text-emerald-700" };
-    if (ratio > 0.12) return { label: text.hurry, cls: "bg-amber-100 text-amber-700" };
-    return { label: text.noSeat, cls: "bg-rose-100 text-rose-700" };
+      return;
+    }
+    if (calendarMonth === 12) {
+      setCalendarYear((prev) => prev + 1);
+      setCalendarMonth(1);
+    } else {
+      setCalendarMonth((prev) => prev + 1);
+    }
   };
 
   return (
@@ -271,27 +238,56 @@ export default function Home() {
 
         <div className="rounded-2xl bg-[#3A8DED] px-4 py-3 text-center text-sm font-bold text-white">{text.heroLead}</div>
 
-        <div className="mt-5">
-          <h2 className={`mb-3 text-3xl font-extrabold text-[#0F172A] ${textTracking}`}>{text.exploreTitle}</h2>
-          <div className="no-scrollbar flex items-center gap-2 overflow-x-auto">
-            {venues.map((venue) => {
-              const label = venue === "All" ? text.all : venue;
-              const active = filter === venue;
-              return (
-                <button
-                  key={venue}
-                  onClick={() => setFilter(venue)}
-                  className={`whitespace-nowrap rounded-full border px-4 py-2 text-sm font-semibold ${
-                    active ? "border-[#1D2742] bg-[#1D2742] text-white" : "border-[#D9E0EB] bg-white text-[#1D2742]"
-                  }`}
-                >
-                  {label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
       </header>
+
+      <section className="surface-card mb-5 p-4">
+        <div className="mb-3 flex items-center justify-between">
+          <button onClick={() => changeCalendarMonth("prev")} className="rounded-lg border border-[#E1E7F2] p-2 text-[#1D2742]">
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <p className="text-4xl font-extrabold tracking-tight text-[#1D2742]">
+            {calendarYear}.{String(calendarMonth).padStart(2, "0")}
+          </p>
+          <button onClick={() => changeCalendarMonth("next")} className="rounded-lg border border-[#E1E7F2] p-2 text-[#1D2742]">
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+
+        <div className="no-scrollbar flex items-center gap-2 overflow-x-auto rounded-xl border border-[#E8ECF4] bg-[#F8FAFD] p-2">
+          {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
+            <button
+              key={month}
+              onClick={() => setCalendarMonth(month)}
+              className={`whitespace-nowrap rounded-lg px-3 py-1.5 text-sm font-semibold ${
+                month === calendarMonth ? "bg-white text-[#1D2742] shadow-sm" : "text-[#6A7591]"
+              }`}
+            >
+              {month}月
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="mb-5">
+        <h2 className={`mb-3 text-3xl font-extrabold text-[#0F172A] ${textTracking}`}>{text.exploreTitle}</h2>
+        <div className="no-scrollbar flex items-center gap-2 overflow-x-auto">
+          {venues.map((venue) => {
+            const label = venue === "All" ? text.all : venue;
+            const active = filter === venue;
+            return (
+              <button
+                key={venue}
+                onClick={() => setFilter(venue)}
+                className={`whitespace-nowrap rounded-full border px-4 py-2 text-sm font-semibold ${
+                  active ? "border-[#1D2742] bg-[#1D2742] text-white" : "border-[#D9E0EB] bg-white text-[#1D2742]"
+                }`}
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
+      </section>
 
       <section className="mb-5">
         <a
@@ -375,95 +371,6 @@ export default function Home() {
             ))}
           </div>
         )}
-      </section>
-
-      <section id="locker" className="surface-card p-4">
-        <div className="mb-3 flex items-center gap-2 text-[#1D2742]">
-          <Warehouse className="h-5 w-5" />
-          <div>
-            <h2 className={`text-lg font-bold ${textTracking}`}>{text.lockerTitle}</h2>
-            <p className={`text-xs text-[#4B587C] ${textTracking}`}>{text.lockerDesc}</p>
-          </div>
-        </div>
-
-        {lockersLoading ? (
-          <div>
-            <p className="mb-3 text-xs text-[#4B587C]">{text.loadingLockers}</p>
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-              {Array.from({ length: 2 }).map((_, idx) => (
-                <div key={idx} className="rounded-xl border border-[#E2E8F5] bg-[#F9FBFF] p-3">
-                  <div className="skeleton mb-2 h-4 w-2/3 rounded" />
-                  <div className="skeleton h-8 rounded" />
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-            {lockers.map((locker) => {
-            const ratio = locker.total === 0 ? 0 : locker.available / locker.total;
-            const status = ratio > 0.45 ? "safe" : ratio > 0.1 ? "busy" : "full";
-            const statusClass =
-              status === "safe"
-                ? "bg-emerald-100 text-emerald-700"
-                : status === "busy"
-                  ? "bg-amber-100 text-amber-700"
-                  : "bg-red-100 text-red-700";
-
-            return (
-              <div key={locker.id} className="rounded-xl border border-[#E2E8F5] bg-[#F9FBFF] p-3">
-                <div className="mb-2 flex items-center justify-between gap-2">
-                  <p className="font-semibold text-[#1D2742]">{locker.name}</p>
-                  <span className={`rounded-full px-2 py-1 text-xs font-bold ${statusClass}`}>
-                    {status === "safe" ? text.safe : status === "busy" ? text.busy : text.full}
-                  </span>
-                </div>
-
-                <p className="mb-2 text-xs font-semibold text-[#1D2742]">{text.lockerDecisionTitle}</p>
-                <p className={`mb-2 rounded-lg px-2 py-1 text-xs font-semibold ${lockerDecision(ratio).cls}`}>
-                  {lockerDecision(ratio).label}
-                </p>
-                <p className="text-sm text-[#4B587C]">
-                  {text.available} / {text.total}: <span className="font-bold">{locker.available}</span> / {locker.total}
-                </p>
-                <p className="mt-1 text-xs text-[#6E7B9A]">
-                  {text.updated}: {new Date(locker.updatedAt).toLocaleTimeString(locale === "ko" ? "ko-KR" : "zh-TW")}
-                </p>
-              </div>
-            );
-            })}
-          </div>
-        )}
-        {lockerError ? <p className="mt-3 text-xs text-red-500">{text.loadError}</p> : null}
-      </section>
-
-      <section className="surface-card mt-6 p-4">
-        <div className="mb-3">
-          <h2 className={`text-lg font-bold text-[#1D2742] ${textTracking}`}>{text.miniGuide}</h2>
-          <p className={`text-xs text-[#4B587C] ${textTracking}`}>{text.miniGuideDesc}</p>
-        </div>
-        <div className="mb-3 flex items-center gap-2">
-          <Link href="/guide" className="rounded-full bg-[#1D2742] px-3 py-1.5 text-xs font-semibold text-white">
-            迷你指南頁面
-          </Link>
-          <a
-            href={NOTION_SURVIVAL_MAP_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-full border border-[#DCE3F2] bg-white px-3 py-1.5 text-xs font-semibold text-[#1D2742]"
-          >
-            生存地圖 (Notion)
-          </a>
-        </div>
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-          {(concerts as Concert[]).slice(0, 3).map((concert) => (
-            <div key={concert.id} className="rounded-xl border border-[#E2E8F5] bg-[#F9FBFF] p-3">
-              <p className="text-sm font-bold text-[#1D2742]">{concert.artist}</p>
-              <p className="mt-1 text-xs text-[#4B587C]">• {concert.miniGuide.entryTip}</p>
-              <p className="mt-1 text-xs text-[#4B587C]">• {concert.miniGuide.lastTrainTip}</p>
-            </div>
-          ))}
-        </div>
       </section>
 
       <BottomNav active="concerts" />
