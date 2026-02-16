@@ -1,6 +1,8 @@
 "use client";
 
 import concerts from "@/data/concerts.json";
+import BottomNav from "@/components/bottom-nav";
+import { NOTION_SURVIVAL_MAP_URL } from "@/constants/links";
 import type { Concert, Venue } from "@/types/concert";
 import { CalendarDays, ChevronRight, Languages, MapPin, MessageCircle, UserRound, Warehouse } from "lucide-react";
 import Link from "next/link";
@@ -239,7 +241,7 @@ export default function Home() {
   };
 
   return (
-    <main className="mx-auto min-h-screen max-w-[760px] bg-[#F5F7FB] px-5 pb-10 pt-5">
+    <main className="mx-auto min-h-screen max-w-[760px] bg-[#F5F7FB] px-5 pb-28 pt-5">
       <header className="sticky top-0 z-30 -mx-5 mb-5 border-b border-[#E7EAF1] bg-[#F5F7FB]/95 px-5 pb-4 pt-5 backdrop-blur">
         <div className="mb-3 flex items-center justify-between">
           <div>
@@ -268,12 +270,6 @@ export default function Home() {
         </div>
 
         <div className="rounded-2xl bg-[#3A8DED] px-4 py-3 text-center text-sm font-bold text-white">{text.heroLead}</div>
-
-        <div className="mt-3 grid grid-cols-3 rounded-2xl border border-[#E8ECF4] bg-white px-2 py-3">
-          <p className="text-center text-sm font-semibold text-[#1D2742]">{text.featureToday}</p>
-          <p className="border-x border-[#E8ECF4] text-center text-sm font-semibold text-[#1D2742]">{text.featureLocker}</p>
-          <p className="text-center text-sm font-semibold text-[#1D2742]">{text.featureLine}</p>
-        </div>
 
         <div className="mt-5">
           <h2 className={`mb-3 text-3xl font-extrabold text-[#0F172A] ${textTracking}`}>{text.exploreTitle}</h2>
@@ -446,6 +442,19 @@ export default function Home() {
           <h2 className={`text-lg font-bold text-[#1D2742] ${textTracking}`}>{text.miniGuide}</h2>
           <p className={`text-xs text-[#4B587C] ${textTracking}`}>{text.miniGuideDesc}</p>
         </div>
+        <div className="mb-3 flex items-center gap-2">
+          <Link href="/guide" className="rounded-full bg-[#1D2742] px-3 py-1.5 text-xs font-semibold text-white">
+            迷你指南頁面
+          </Link>
+          <a
+            href={NOTION_SURVIVAL_MAP_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full border border-[#DCE3F2] bg-white px-3 py-1.5 text-xs font-semibold text-[#1D2742]"
+          >
+            生存地圖 (Notion)
+          </a>
+        </div>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           {(concerts as Concert[]).slice(0, 3).map((concert) => (
             <div key={concert.id} className="rounded-xl border border-[#E2E8F5] bg-[#F9FBFF] p-3">
@@ -457,6 +466,7 @@ export default function Home() {
         </div>
       </section>
 
+      <BottomNav active="concerts" />
     </main>
   );
 }

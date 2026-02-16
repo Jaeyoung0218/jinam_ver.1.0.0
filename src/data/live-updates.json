@@ -1,0 +1,38 @@
+[
+  {
+    "id": "live-kspo-gate",
+    "title": "KSPO Dome 外場",
+    "location": "Jamsil Olympic Park",
+    "summary": "MD line is stable and entry queue is moving every 10 minutes.",
+    "updatedAt": "2026-02-15T16:20:00+09:00",
+    "tags": ["排隊", "MD", "入場"],
+    "tone": "sky"
+  },
+  {
+    "id": "live-handball-merch",
+    "title": "Handball 館周邊",
+    "location": "Handball Arena",
+    "summary": "Crowd density increased near booth A. Use booth C for faster checkout.",
+    "updatedAt": "2026-02-15T16:05:00+09:00",
+    "tags": ["購買", "混雜", "建議路線"],
+    "tone": "amber"
+  },
+  {
+    "id": "live-olympic-hall",
+    "title": "Olympic Hall Gate 2",
+    "location": "Olympic Hall",
+    "summary": "Photo zone is open. Locker around Exit 1 still available.",
+    "updatedAt": "2026-02-15T15:55:00+09:00",
+    "tags": ["拍照", "置物櫃", "即時"],
+    "tone": "emerald"
+  },
+  {
+    "id": "live-last-train",
+    "title": "末班地鐵提醒",
+    "location": "Line 8 / Line 9",
+    "summary": "After encore, transfer to Line 8 first for smoother route.",
+    "updatedAt": "2026-02-15T15:40:00+09:00",
+    "tags": ["地鐵", "回程", "提醒"],
+    "tone": "indigo"
+  }
+]
