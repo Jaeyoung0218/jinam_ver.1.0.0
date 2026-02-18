@@ -1,16 +1,16 @@
 {
   "Dashboard": {
     "title": "올림픽공원 공연 대시보드",
-    "subtitle": "한국어 / 번체(ZH-TW) 지원",
-    "filterLabel": "공연장 필터",
-    "sortLabel": "정렬",
+    "subtitle": "공연별 정보 제공 및 예매 안내",
+    "filterLabel": "공연장",
+    "sortLabel": "날짜", 
     "sortDateAsc": "날짜 오름차순",
     "sortDateDesc": "날짜 내림차순",
     "dday": "D-Day",
     "ticket": "예매하기",
-    "comingSoon": "敬請期待",
-    "globalTicket": "글로벌 예매",
-    "admin": "관리자 검수",
+    "comingSoon": "커밍쑨",
+    "globalTicket": "글로벌 티켓",
+    "admin": "관리자 모드",
     "language": "언어"
   },
   "Venues": {
@@ -20,8 +20,8 @@
     "olympic": "올림픽홀"
   },
   "Admin": {
-    "title": "관리자 검수 대시보드",
-    "subtitle": "크롤링 결과 승인/보류/수정",
+    "title": "관리자 모드 대시보드",
+    "subtitle": "공연 정보 승인/보류/수정",
     "approve": "승인",
     "hold": "보류",
     "edit": "수정"
