@@ -1,4 +1,5 @@
 import { Link } from "@/i18n/navigation";
+import BottomNav from "@/components/ui/bottom-nav";
 import { fetchPerformances } from "@/lib/performances/repository";
 import { getDDay } from "@/lib/utils/dday";
 import type { Performance } from "@/types/performance";
@@ -35,7 +36,7 @@ export default async function LocalizedDashboardPage({ params }: Props) {
   const cards = venueFiltered.all.sort((a, b) => a.start_date.localeCompare(b.start_date));
 
   return (
-    <main className="mx-auto min-h-screen max-w-[760px] bg-[#F5F7FB] px-4 pb-8 pt-5">
+    <main className="mx-auto min-h-screen max-w-[760px] bg-[#F5F7FB] px-4 pb-28 pt-5">
       <header className="mb-4 rounded-2xl border border-[#E2E8F5] bg-white p-4">
         <div className="mb-3 flex items-center justify-between">
           <div>
@@ -74,6 +75,8 @@ export default async function LocalizedDashboardPage({ params }: Props) {
           <PerformanceCard key={item.id} item={item} locale={locale} />
         ))}
       </section>
+
+      <BottomNav active="concerts" />
     </main>
   );
 }
