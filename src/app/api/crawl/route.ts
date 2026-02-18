@@ -2,20 +2,19 @@ import { NextResponse } from "next/server";
 import { existsSync, readdirSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
+import { createClient } from "@supabase/supabase-js";
 import puppeteer from "puppeteer";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-type Concert = {
-  title: string | null;
-  date: string | null;
-  venue: string | null;
-  sourceUrl: string;
-  crawledAt: string;
+type CrawledPerformance = {
+  title_ko: string;
+  date: string;
+  link: string;
 };
 
-const TARGET_URL = "https://www.olympicpark.kspo.or.kr/reserve/concert";
+const TARGET_URL = process.env.CRAWL_GLOBAL_TICKET_URL ?? "https://ticket.example.com/global";
 
 const normalizeText = (value: string | null | undefined): string | null => {
   const text = value?.replace(/\s+/g, " ").trim() ?? "";
@@ -46,6 +45,16 @@ export async function GET() {
   let browser: Awaited<ReturnType<typeof puppeteer.launch>> | null = null;
 
   try {
+    const supabaseUrl = process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!supabaseUrl || !serviceRoleKey) {
+      return NextResponse.json(
+        { ok: false, message: "SUPABASE_URL/NEXT_PUBLIC_SUPABASE_URL 또는 SUPABASE_SERVICE_ROLE_KEY가 없습니다." },
+        { status: 500 },
+      );
+    }
+    const supabase = createClient(supabaseUrl, serviceRoleKey);
+
     const executablePath = resolveChromeExecutablePath();
     browser = await puppeteer.launch({
       headless: true,
@@ -61,48 +70,72 @@ export async function GET() {
 
     await page.waitForSelector("body", { timeout: 15_000 });
 
-    const concerts = await page.evaluate((url) => {
-      const rows =
-        document.querySelectorAll(".concert-item").length > 0
-          ? document.querySelectorAll(".concert-item")
-          : document.querySelectorAll("li, tr, .item, .list-item");
+    const performances = await page.evaluate(() => {
+      const rows = Array.from(document.querySelectorAll(".event-item"));
+      return rows
+        .map((item) => {
+          const title = item.querySelector(".title")?.textContent?.trim() ?? "";
+          const date = item.querySelector(".date")?.getAttribute("data-iso")?.trim() ?? "";
+          const link = item.querySelector("a")?.getAttribute("href")?.trim() ?? "";
+          return {
+            title_ko: title,
+            date,
+            link,
+          };
+        })
+        .filter((item) => item.title_ko && item.date && item.link);
+    });
 
-      const now = new Date().toISOString();
+    const normalized: CrawledPerformance[] = performances
+      .map((item) => ({
+        title_ko: normalizeText(item.title_ko) ?? "",
+        date: normalizeText(item.date) ?? "",
+        link: normalizeText(item.link) ?? "",
+      }))
+      .filter((item) => item.title_ko && item.date && item.link);
 
-      const readText = (node: Element | null): string | null => {
-        const raw = node?.textContent?.replace(/\s+/g, " ").trim() ?? "";
-        return raw.length > 0 ? raw : null;
-      };
+    let inserted = 0;
+    let skipped = 0;
+    for (const perf of normalized) {
+      const { data: existing, error: selectError } = await supabase
+        .from("performances")
+        .select("id")
+        .filter("title->>ko", "eq", perf.title_ko)
+        .eq("performance_date", perf.date)
+        .maybeSingle();
 
-      return Array.from(rows)
-        .map((row) => ({
-          title:
-            readText(row.querySelector(".title")) ??
-            readText(row.querySelector("h3, h4, strong, .subject")),
-          date:
-            readText(row.querySelector(".date")) ??
-            readText(row.querySelector(".period, .day, time")),
-          venue:
-            readText(row.querySelector(".venue")) ??
-            readText(row.querySelector(".place, .hall")),
-          sourceUrl: url,
-          crawledAt: now,
-        }))
-        .filter((item) => item.title || item.date || item.venue);
-    }, TARGET_URL);
+      if (selectError) {
+        skipped += 1;
+        continue;
+      }
 
-    const sanitized: Concert[] = concerts.map((item) => ({
-      title: normalizeText(item.title),
-      date: normalizeText(item.date),
-      venue: normalizeText(item.venue),
-      sourceUrl: item.sourceUrl,
-      crawledAt: item.crawledAt,
-    }));
+      if (existing?.id) {
+        skipped += 1;
+        continue;
+      }
+
+      const { error: insertError } = await supabase.from("performances").insert({
+        title: { ko: perf.title_ko, "zh-TW": "" },
+        performance_date: perf.date,
+        ticket_link_global: perf.link,
+        status: "Hold",
+        source: TARGET_URL,
+      });
+
+      if (insertError) {
+        skipped += 1;
+        continue;
+      }
+      inserted += 1;
+    }
 
     return NextResponse.json({
       ok: true,
-      count: sanitized.length,
-      data: sanitized,
+      target: TARGET_URL,
+      crawled: normalized.length,
+      inserted,
+      skipped,
+      data: normalized,
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);

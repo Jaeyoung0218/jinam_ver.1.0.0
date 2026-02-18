@@ -1,41 +1,57 @@
--- Venues
-create table if not exists public.venues (
-  id uuid primary key default gen_random_uuid(),
-  slug text unique not null,
-  name_ko text not null,
-  name_en text,
-  name_zh_tw text not null,
-  capacity integer,
-  location_map_url text
-);
+create extension if not exists pgcrypto;
 
--- Performances
+-- Core table for crawler/admin flow
 create table if not exists public.performances (
   id uuid primary key default gen_random_uuid(),
-  title_ko text not null,
-  title_zh_tw text,
-  artist_name text,
-  start_date date not null,
-  end_date date,
-  venue_id uuid not null references public.venues(id) on delete restrict,
-  poster_url text,
-  status text not null default 'draft' check (status in ('draft', 'scheduled', 'ongoing', 'finished', 'archived')),
+  title jsonb not null default '{"ko":"", "zh-TW":""}'::jsonb,
+  performance_date date not null,
+  ticket_link_global text,
+  status text not null default 'Hold' check (status in ('Hold', 'Approve', 'Reject')),
+  source text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
-create unique index if not exists performances_unique_idx
-  on public.performances (venue_id, start_date, coalesce(end_date, start_date), title_ko);
+-- Duplicate protection: title(ko) + date
+create unique index if not exists performances_unique_title_ko_date_idx
+  on public.performances ((title->>'ko'), performance_date);
 
--- Ticket links
-create table if not exists public.ticket_links (
-  id uuid primary key default gen_random_uuid(),
-  performance_id uuid not null references public.performances(id) on delete cascade,
-  provider text not null check (provider in ('WorldNol', 'YES24')),
-  url text not null,
-  is_global boolean not null default false,
-  created_at timestamptz not null default now()
-);
+create or replace function public.set_updated_at()
+returns trigger
+language plpgsql
+as $$
+begin
+  new.updated_at = now();
+  return new;
+end;
+$$;
 
-create unique index if not exists ticket_links_unique_idx
-  on public.ticket_links (performance_id, provider);
+drop trigger if exists trg_performances_updated_at on public.performances;
+create trigger trg_performances_updated_at
+before update on public.performances
+for each row
+execute function public.set_updated_at();
+
+-- ============================================================
+-- RLS Policies
+-- ============================================================
+alter table public.performances enable row level security;
+
+drop policy if exists "public_read_approved_performances" on public.performances;
+create policy "public_read_approved_performances"
+on public.performances
+for select
+to anon, authenticated
+using (status = 'Approve');
+
+drop policy if exists "service_role_all_performances" on public.performances;
+create policy "service_role_all_performances"
+on public.performances
+for all
+to service_role
+using (true)
+with check (true);
+
+grant usage on schema public to anon, authenticated, service_role;
+grant select on public.performances to anon, authenticated;
+grant all on public.performances to service_role;
