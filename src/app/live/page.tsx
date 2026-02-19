@@ -9,7 +9,7 @@ export default async function LivePage() {
   const todayPerformances = list.filter((item) => item.start_date === today);
 
   return (
-    <main className="mx-auto min-h-screen max-w-[1024px] bg-[#F5F7FB] px-5 pb-28 pt-5 transition-all duration-200">
+    <main className="mx-auto min-h-screen max-w-[430px] bg-[#F5F7FB] px-3 pb-28 pt-4 transition-all duration-200">
       <LivePhotoCarousel items={todayPerformances} locale="zh-TW" />
 
       <BottomNav active="live" />

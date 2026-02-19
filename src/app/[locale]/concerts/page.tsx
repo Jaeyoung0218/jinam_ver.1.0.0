@@ -49,11 +49,11 @@ export default async function ConcertsPage({ params, searchParams }: Props) {
   ];
 
   return (
-    <main className="mx-auto min-h-screen max-w-6xl break-words bg-[#F5F7FB] px-4 pb-28 pt-5">
-      <header className="mb-4 rounded-2xl border border-[#E2E8F5] bg-white p-4">
+    <main className="mx-auto min-h-screen max-w-[430px] break-words bg-[#F5F7FB] px-3 pb-28 pt-4">
+      <header className="mb-3 rounded-3xl border border-[#E2E8F5] bg-white p-4 shadow-[0_8px_20px_rgba(29,39,66,0.06)]">
         <div className="flex items-center justify-between gap-2">
           <div>
-            <h1 className="text-xl font-semibold text-[#1D2742]">{t("title")}</h1>
+            <h1 className="text-[1.08rem] font-semibold text-[#1D2742]">{t("title")}</h1>
             <p className="text-cjk-body text-xs font-normal text-[#6E7B9A]">{t("subtitle")}</p>
           </div>
           <LanguageToggle current={locale} />
@@ -76,7 +76,7 @@ export default async function ConcertsPage({ params, searchParams }: Props) {
         />
       </div>
 
-      <section className="grid gap-4 md:grid-cols-2">
+      <section className="grid gap-3">
         {ordered.map((concert) => {
           const titleZh = concert.title_zh_tw ?? undefined;
           const venueZh = concert.venue?.name_zh_tw ?? undefined;

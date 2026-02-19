@@ -38,7 +38,7 @@ export default function LivePhotoCarousel({ items, locale }: Props) {
 
   if (images.length === 0) {
     return (
-      <section className="rounded-2xl border border-[#E2E8F5] bg-white p-6 text-center">
+      <section className="rounded-3xl border border-[#E2E8F5] bg-white p-6 text-center shadow-[0_8px_20px_rgba(29,39,66,0.05)]">
         <h2 className="text-base font-semibold text-[#1D2742]">{locale === "ko" ? "오늘의 현장 사진" : "今日現場照片"}</h2>
         <p className="text-cjk-body mt-2 text-sm font-normal text-[#6E7B9A]">
           {locale === "ko" ? "오늘 공연 이미지가 아직 없습니다." : "今天的演出圖片尚未上傳。"}
@@ -48,7 +48,7 @@ export default function LivePhotoCarousel({ items, locale }: Props) {
   }
 
   return (
-    <section className="rounded-2xl border border-[#E2E8F5] bg-white p-3 shadow-sm">
+    <section className="rounded-3xl border border-[#E2E8F5] bg-white p-3 shadow-[0_10px_24px_rgba(29,39,66,0.08)]">
       <div className="mb-3 flex items-center justify-between px-1">
         <h2 className="text-lg font-semibold text-[#1D2742]">{locale === "ko" ? "실시간 현장 업데이트" : "實時現場更新"}</h2>
         <p className="text-xs font-semibold text-[#6E7B9A]">
@@ -56,7 +56,7 @@ export default function LivePhotoCarousel({ items, locale }: Props) {
         </p>
       </div>
 
-      <div className="relative h-[440px] overflow-hidden rounded-xl bg-[#E8EDF8]">
+      <div className="relative h-[420px] overflow-hidden rounded-2xl bg-[#E8EDF8]">
         <Image src={active.src} alt={active.title} fill sizes="(max-width: 768px) 100vw, 760px" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent" />
 
