@@ -1,16 +1,44 @@
 {
+  "layout": {
+    "title": "올림픽공원 공연 대시보드",
+    "subtitle": "대만 팬을 위한 서울 올림픽공원 공연 정보 한눈에 보기",
+    "admin": "관리자 접속"
+  },
+  "filter": {
+    "venue": "공연장",
+    "category": "카테고리",
+    "artist": "아티스트 검색",
+    "sort": {
+      "popular": "인기순"
+    }
+  },
+  "event": {
+    "ticketCta": "티켓 예매하기",
+    "ticketCtaZh": "訂票",
+    "storageCta": "짐 보관·이동 서비스",
+    "fromPrice": "{price}원~"
+  },
+  "adminPanel": {
+    "title": "오늘의 공연 인사이트",
+    "todayBookings": "오늘 예매 수",
+    "remainingSeats": "잔여 좌석",
+    "conversion": "전환율"
+  },
   "Dashboard": {
     "title": "올림픽공원 공연 대시보드",
     "subtitle": "공연별 정보 제공 및 예매 안내",
+    "adminReady": "Jinam Admin-ready",
     "filterLabel": "공연장",
-    "sortLabel": "날짜", 
-    "sortDateAsc": "날짜 오름차순",
-    "sortDateDesc": "날짜 내림차순",
+    "dateLabel": "날짜",
+    "sortLabel": "정렬",
+    "resetLabel": "초기화",
+    "sortDateAsc": "날짜 빠른순",
+    "sortDateDesc": "날짜 늦은순",
     "dday": "D-Day",
     "ticket": "예매하기",
-    "comingSoon": "커밍쑨",
+    "comingSoon": "곧 공개",
     "globalTicket": "글로벌 티켓",
-    "admin": "관리자 모드",
+    "admin": "관리자 접속",
     "language": "언어"
   },
   "Venues": {
@@ -20,10 +48,23 @@
     "olympic": "올림픽홀"
   },
   "Admin": {
-    "title": "관리자 모드 대시보드",
+    "title": "관리자 모드",
     "subtitle": "공연 정보 승인/보류/수정",
     "approve": "승인",
     "hold": "보류",
     "edit": "수정"
+  },
+  "ConcertDetail": {
+    "dday": "D-Day",
+    "ticketCta": "티켓 예매하기",
+    "comingSoon": "커밍쑨",
+    "luggageCta": "짐 보관·이동"
+  },
+  "LockerWidget": {
+    "title": "🔒 Locker Status",
+    "sortByDistance": "KSPO 거리순",
+    "lastUpdated": "Last updated:",
+    "apiError": "락커 API를 불러오지 못했습니다.",
+    "lineFallback": "LINE에서 최신 상황 확인"
   }
 }

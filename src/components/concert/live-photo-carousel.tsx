@@ -39,8 +39,8 @@ export default function LivePhotoCarousel({ items, locale }: Props) {
   if (images.length === 0) {
     return (
       <section className="rounded-2xl border border-[#E2E8F5] bg-white p-6 text-center">
-        <h2 className="text-base font-bold text-[#1D2742]">{locale === "ko" ? "오늘의 현장 사진" : "今日現場照片"}</h2>
-        <p className="mt-2 text-sm text-[#6E7B9A]">
+        <h2 className="text-base font-semibold text-[#1D2742]">{locale === "ko" ? "오늘의 현장 사진" : "今日現場照片"}</h2>
+        <p className="text-cjk-body mt-2 text-sm font-normal text-[#6E7B9A]">
           {locale === "ko" ? "오늘 공연 이미지가 아직 없습니다." : "今天的演出圖片尚未上傳。"}
         </p>
       </section>
@@ -50,7 +50,7 @@ export default function LivePhotoCarousel({ items, locale }: Props) {
   return (
     <section className="rounded-2xl border border-[#E2E8F5] bg-white p-3 shadow-sm">
       <div className="mb-3 flex items-center justify-between px-1">
-        <h2 className="text-lg font-extrabold text-[#1D2742]">{locale === "ko" ? "실시간 현장 업데이트" : "實時現場更新"}</h2>
+        <h2 className="text-lg font-semibold text-[#1D2742]">{locale === "ko" ? "실시간 현장 업데이트" : "實時現場更新"}</h2>
         <p className="text-xs font-semibold text-[#6E7B9A]">
           {index + 1} / {images.length}
         </p>
@@ -61,9 +61,9 @@ export default function LivePhotoCarousel({ items, locale }: Props) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent" />
 
         <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-          <h3 className="text-xl font-extrabold">{active.title}</h3>
-          <p className="mt-1 text-sm opacity-95">{active.venue ?? "-"}</p>
-          <p className="text-xs opacity-90">{active.date}</p>
+          <h3 className="text-xl font-semibold">{active.title}</h3>
+          <p className="text-cjk-body mt-1 text-sm font-normal opacity-95">{active.venue ?? "-"}</p>
+          <p className="text-cjk-body text-xs font-normal opacity-90">{active.date}</p>
         </div>
 
         {images.length > 1 ? (

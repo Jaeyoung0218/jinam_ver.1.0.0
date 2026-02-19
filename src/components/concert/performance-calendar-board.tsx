@@ -9,9 +9,6 @@ type Props = {
   items: Performance[];
   locale: "ko" | "zh-TW";
   filterLabel: string;
-  sortLabel: string;
-  sortDateAsc: string;
-  sortDateDesc: string;
 };
 
 function formatDateByLocale(date: string, locale: "ko" | "zh-TW") {
@@ -31,9 +28,6 @@ export default function PerformanceCalendarBoard({
   items,
   locale,
   filterLabel,
-  sortLabel,
-  sortDateAsc,
-  sortDateDesc,
 }: Props) {
   const sortedDates = useMemo(
     () => Array.from(new Set(items.map((item) => item.start_date))).sort((a, b) => a.localeCompare(b)),
@@ -45,8 +39,6 @@ export default function PerformanceCalendarBoard({
   const defaultDate = sortedDates.includes(todayKey) ? todayKey : sortedDates[0] ?? "";
 
   const [selectedDate, setSelectedDate] = useState(defaultDate);
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-
   const [calendarYear, setCalendarYear] = useState(() => {
     if (!defaultDate) return today.getFullYear();
     return Number(defaultDate.slice(0, 4));
@@ -66,11 +58,8 @@ export default function PerformanceCalendarBoard({
   });
 
   const filteredCards = useMemo(() => {
-    const base = selectedDate ? items.filter((item) => item.start_date === selectedDate) : items;
-    return [...base].sort((a, b) =>
-      sortOrder === "asc" ? a.start_date.localeCompare(b.start_date) : b.start_date.localeCompare(a.start_date),
-    );
-  }, [items, selectedDate, sortOrder]);
+    return selectedDate ? items.filter((item) => item.start_date === selectedDate) : items;
+  }, [items, selectedDate]);
 
   const changeMonth = (direction: "prev" | "next") => {
     if (direction === "prev") {
@@ -96,20 +85,6 @@ export default function PerformanceCalendarBoard({
       <section className="mb-4 rounded-2xl border border-[#E2E8F5] bg-white p-3">
         <div className="mb-2 flex items-center justify-between">
           <p className="text-xs font-semibold text-[#4B587C]">{filterLabel}</p>
-          <div className="flex items-center gap-2">
-            <label htmlFor="sort-order" className="text-xs font-semibold text-[#4B587C]">
-              {sortLabel}
-            </label>
-            <select
-              id="sort-order"
-              value={sortOrder}
-              onChange={(e) => setSortOrder(e.target.value as "asc" | "desc")}
-              className="rounded-md border border-[#DCE3F2] bg-white px-2 py-1 text-xs font-semibold text-[#1D2742]"
-            >
-              <option value="asc">{sortDateAsc}</option>
-              <option value="desc">{sortDateDesc}</option>
-            </select>
-          </div>
         </div>
 
         <div className="mb-2 flex items-center justify-between">
@@ -120,7 +95,7 @@ export default function PerformanceCalendarBoard({
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
-          <p className="text-sm font-bold text-[#1D2742]">{getMonthTitle(calendarYear, calendarMonth, locale)}</p>
+          <p className="text-sm font-semibold text-[#1D2742]">{getMonthTitle(calendarYear, calendarMonth, locale)}</p>
           <button
             type="button"
             onClick={() => changeMonth("next")}
@@ -141,7 +116,7 @@ export default function PerformanceCalendarBoard({
                 type="button"
                 onClick={() => hasEvent && setSelectedDate(dateKey)}
                 disabled={!hasEvent}
-                className={`rounded-md px-2 py-1 text-xs font-semibold ${
+                className={`rounded-md px-2 py-1 text-xs font-normal ${
                   active
                     ? "bg-[#1D2742] text-white"
                     : hasEvent
@@ -171,10 +146,10 @@ export default function PerformanceCalendarBoard({
 
               <div className="mb-2 flex items-center gap-2 text-[#1D2742]">
                 <CalendarDays className="h-4 w-4" />
-                <p className="text-sm font-semibold">{formatDateByLocale(item.start_date, locale)}</p>
+                <p className="text-cjk-body text-sm font-normal">{formatDateByLocale(item.start_date, locale)}</p>
               </div>
-              <h2 className="text-base font-bold text-[#1D2742]">{title}</h2>
-              <p className="mt-1 flex items-center gap-1 text-sm text-[#4B587C]">
+              <h2 className="text-base font-semibold text-[#1D2742]">{title}</h2>
+              <p className="text-cjk-body mt-1 flex items-center gap-1 text-sm font-normal text-[#4B587C]">
                 <MapPin className="h-4 w-4" />
                 {venue}
               </p>

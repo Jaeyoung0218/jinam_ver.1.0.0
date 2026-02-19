@@ -1,29 +1,70 @@
 {
+  "layout": {
+    "title": "奧林匹克公園演唱會儀表板",
+    "subtitle": "為台灣粉絲整理的奧林匹克公園演唱會資訊一覽",
+    "admin": "管理員登入"
+  },
+  "filter": {
+    "venue": "場館",
+    "category": "分類",
+    "artist": "搜尋藝人",
+    "sort": {
+      "popular": "熱門排序"
+    }
+  },
+  "event": {
+    "ticketCta": "立即訂票",
+    "ticketCtaZh": "訂票",
+    "storageCta": "行李寄存・接駁服務",
+    "fromPrice": "{price}韓元起"
+  },
+  "adminPanel": {
+    "title": "今日演唱會洞察",
+    "todayBookings": "今日訂票數",
+    "remainingSeats": "剩餘座位",
+    "conversion": "轉換率"
+  },
   "Dashboard": {
-    "title": "奧林匹克公園 演唱會 儀表板",
-    "subtitle": "演唱會資訊提供及預售票指引",
+    "title": "奧林匹克公園演唱會儀表板",
+    "subtitle": "提供各演唱會資訊及購票說明",
+    "adminReady": "Jinam Admin-ready",
     "filterLabel": "場館",
-    "sortLabel": "日期",
+    "dateLabel": "日期",
+    "sortLabel": "排序",
+    "resetLabel": "重設",
     "sortDateAsc": "日期由近到遠",
     "sortDateDesc": "日期由遠到近",
-    "dday": "D-Day",
-    "ticket": "立即購票",
-    "comingSoon": "即將上線",
-    "globalTicket": "全球票券",
-    "admin": "管理員模式",
+    "dday": "倒數",
+    "ticket": "立即訂票",
+    "comingSoon": "即將公開",
+    "globalTicket": "全球票務",
+    "admin": "管理員登入",
     "language": "語言"
   },
   "Venues": {
     "all": "全部",
     "kspo": "KSPO DOME",
-    "handball": "handball",
-    "olympic": "olympic-hall"
+    "handball": "手球館",
+    "olympic": "奧林匹克廳"
   },
   "Admin": {
-    "title": "管理員模式 儀表板",
-    "subtitle": "演唱會資訊 審核/保留/編輯",
-    "approve": "審核",
+    "title": "管理員模式",
+    "subtitle": "演出資訊審核 / 保留 / 修改",
+    "approve": "審核通過",
     "hold": "保留",
-    "edit": "編輯"
+    "edit": "修改"
+  },
+  "ConcertDetail": {
+    "dday": "D-Day",
+    "ticketCta": "立即訂票",
+    "comingSoon": "即將上線",
+    "luggageCta": "行李寄存・移動"
+  },
+  "LockerWidget": {
+    "title": "🔒 Locker Status",
+    "sortByDistance": "距離 KSPO 排序",
+    "lastUpdated": "Last updated:",
+    "apiError": "無法取得置物櫃 API 資料。",
+    "lineFallback": "在 LINE 詢問最新狀況"
   }
 }

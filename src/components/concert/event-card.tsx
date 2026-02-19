@@ -36,12 +36,12 @@ export default function EventCard({
         ) : null}
       </div>
       <div className="flex flex-col gap-3 p-5">
-        <div className="text-xs text-slate-500">{dateLabel}</div>
+        <div className="text-cjk-body text-xs font-normal text-slate-500">{dateLabel}</div>
         <div>
           <h2 className="text-lg font-semibold text-slate-900">{titleKo}</h2>
-          {titleZhTw ? <p className="text-sm text-slate-600">{titleZhTw}</p> : null}
+          {titleZhTw ? <p className="text-cjk-body text-sm font-normal text-slate-600">{titleZhTw}</p> : null}
         </div>
-        <div className="text-sm text-slate-600">
+        <div className="text-cjk-body text-sm font-normal text-slate-600">
           {venueKo}
           {venueZhTw ? <span className="ml-1 text-slate-500">({venueZhTw})</span> : null}
           <span className="mx-1">·</span>

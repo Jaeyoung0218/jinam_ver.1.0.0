@@ -29,9 +29,9 @@ export default async function LocalizedDashboardPage({ params }: Props) {
       <header className="mb-4 rounded-2xl border border-[#E2E8F5] bg-white p-4">
         <div className="mb-3 flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold text-[#4B587C]">Jinam Admin-ready</p>
-            <h1 className="text-xl font-extrabold text-[#1D2742]">{t("title")}</h1>
-            <p className="text-xs text-[#6E7B9A]">{t("subtitle")}</p>
+            <p className="text-xs font-normal text-[#4B587C]">{t("adminReady")}</p>
+            <h1 className="text-xl font-semibold text-[#1D2742]">{t("title")}</h1>
+            <p className="text-cjk-body text-xs font-normal text-[#6E7B9A]">{t("subtitle")}</p>
           </div>
           <Globe className="h-5 w-5 text-[#1D2742]" />
         </div>
@@ -53,9 +53,6 @@ export default async function LocalizedDashboardPage({ params }: Props) {
         items={cards}
         locale={locale}
         filterLabel={t("filterLabel")}
-        sortLabel={t("sortLabel")}
-        sortDateAsc={t("sortDateAsc")}
-        sortDateDesc={t("sortDateDesc")}
       />
 
       <BottomNav active="concerts" />

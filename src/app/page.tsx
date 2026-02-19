@@ -58,11 +58,13 @@ const copy = {
     liveState: "\u73fe\u5834\u5373\u6642\u72c0\u614b",
     lineEntry: "LINE \u793e\u7fa4",
     lineJoin: "\u52a0\u5165 LINE Open Chat",
+    sortByDistance: "\u8ddd\u96e2 KSPO \u6392\u5e8f",
     detail: "\u770b\u8a73\u60c5",
     ticket: "\u8a02\u7968",
     miniGuide: "\u8ff7\u4f60\u6307\u5357",
     miniGuideDesc: "\u73fe\u5834\u5c0f\u6280\u5de7 / \u672b\u73ed\u8eca / \u79fb\u52d5\u8def\u7dda",
     loadError: "\u66ab\u6642\u7121\u6cd5\u8b80\u53d6\u7f6e\u7269\u6ac3\u8cc7\u6599",
+    lineFallback: "\u5728 LINE \u8a62\u554f\u6700\u65b0\u72c0\u6cc1",
     lockerDecisionTitle: "\u73fe\u5728\u53bb\u6709\u4f4d\u7f6e\u55ce\uff1f",
     goNow: "\u53ef\u4ee5\u73fe\u5728\u53bb",
     hurry: "\u5efa\u8b70\u76e1\u5feb\u524d\u5f80",
@@ -95,11 +97,13 @@ const copy = {
     liveState: "\ud604\uc7a5 \uc2e4\uc2dc\uac04 \uc0c1\ud669",
     lineEntry: "LINE \ucee4\ubba4\ub2c8\ud2f0",
     lineJoin: "LINE \uc624\ud508\ucc57 \ucc38\uc5ec",
+    sortByDistance: "KSPO \uac70\ub9ac\uc21c",
     detail: "\uc0c1\uc138 \ubcf4\uae30",
     ticket: "\ud2f0\ucf13 \uc608\ub9e4",
     miniGuide: "\ubbf8\ub2c8 \uac00\uc774\ub4dc",
     miniGuideDesc: "\uafc0\ud301 / \ub9c9\ucc28 / \ub3d9\uc120 \uc815\ub9ac",
     loadError: "\ub77d\ucee4 \ub370\uc774\ud130\ub97c \ubd88\ub7ec\uc624\uc9c0 \ubabb\ud588\uc2b5\ub2c8\ub2e4",
+    lineFallback: "LINE\uc5d0\uc11c \ucd5c\uc2e0 \uc0c1\ud669 \ud655\uc778",
     lockerDecisionTitle: "\uc9c0\uae08 \uac00\ub3c4 \uc790\ub9ac \uc788\ub098\uc694?",
     goNow: "\uc9c0\uae08 \uc774\ub3d9 \ucd94\ucc9c",
     hurry: "\uc11c\ub450\ub974\uba74 \uc774\uc6a9 \uac00\ub2a5",
@@ -375,7 +379,17 @@ export default function Home() {
         )}
       </section>
 
-      <LockerWidget lineUrl={(concerts as Concert[])[0]?.lineOpenChatUrl} locale={locale} />
+      <LockerWidget
+        lineUrl={(concerts as Concert[])[0]?.lineOpenChatUrl}
+        locale={locale}
+        labels={{
+          title: text.lockerTitle,
+          sortByDistance: text.sortByDistance,
+          lastUpdated: `Last updated:`,
+          apiError: text.loadError,
+          lineFallback: text.lineFallback,
+        }}
+      />
 
       <SurvivalMapFab locale={locale} />
 

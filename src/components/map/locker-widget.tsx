@@ -18,6 +18,13 @@ type LockerResponse = {
 type Props = {
   lineUrl?: string;
   locale: "ko" | "zh-TW";
+  labels?: {
+    title: string;
+    sortByDistance: string;
+    lastUpdated: string;
+    apiError: string;
+    lineFallback: string;
+  };
 };
 
 const DISTANCE_TO_KSPO: Record<string, number> = {
@@ -25,7 +32,7 @@ const DISTANCE_TO_KSPO: Record<string, number> = {
   mongchontoseong: 1.1,
 };
 
-export default function LockerWidget({ lineUrl, locale }: Props) {
+export default function LockerWidget({ lineUrl, locale, labels }: Props) {
   const [data, setData] = useState<LockerItem[]>([]);
   const [lastUpdated, setLastUpdated] = useState<string>("");
   const [sortByDistance, setSortByDistance] = useState(false);
@@ -61,22 +68,29 @@ export default function LockerWidget({ lineUrl, locale }: Props) {
     if (!sortByDistance) return data;
     return [...data].sort((a, b) => (DISTANCE_TO_KSPO[a.id] ?? 999) - (DISTANCE_TO_KSPO[b.id] ?? 999));
   }, [data, sortByDistance]);
+  const text = labels ?? {
+    title: "Locker Status",
+    sortByDistance: "Sort by distance to KSPO",
+    lastUpdated: "Last updated:",
+    apiError: "Unable to load locker API data.",
+    lineFallback: "Check latest updates on LINE",
+  };
 
   return (
     <section id="locker" className="surface-card mb-6 p-4">
       <div className="mb-3 flex items-center justify-between">
-        <h2 className="text-sm font-bold text-[#1D2742]">🔒 Locker Status</h2>
+        <h2 className="text-sm font-bold text-[#1D2742]">{text.title}</h2>
         <button
           type="button"
           onClick={() => setSortByDistance((prev) => !prev)}
           className="rounded-full border border-[#DCE3F2] px-3 py-1 text-[11px] font-semibold text-[#1D2742]"
         >
-          {locale === "ko" ? "KSPO 거리순" : "距離 KSPO 排序"}
+          {text.sortByDistance}
         </button>
       </div>
 
       <p className="mb-3 text-xs text-[#6E7B9A]">
-        Last updated:{" "}
+        {text.lastUpdated}{" "}
         {lastUpdated
           ? new Date(lastUpdated).toLocaleTimeString(locale === "ko" ? "ko-KR" : "zh-TW", {
               hour: "2-digit",
@@ -88,7 +102,7 @@ export default function LockerWidget({ lineUrl, locale }: Props) {
       {isError ? (
         <div className="rounded-xl border border-rose-200 bg-rose-50 p-3">
           <p className="text-xs font-semibold text-rose-700">
-            {locale === "ko" ? "락커 API를 불러오지 못했습니다." : "無法取得置物櫃 API 資料。"}
+            {text.apiError}
           </p>
           {lineUrl ? (
             <a
@@ -97,7 +111,7 @@ export default function LockerWidget({ lineUrl, locale }: Props) {
               rel="noreferrer"
               className="mt-2 inline-flex rounded-lg bg-[#06C755] px-3 py-1.5 text-xs font-bold text-white"
             >
-              在 LINE 詢問最新狀況
+              {text.lineFallback}
             </a>
           ) : null}
         </div>

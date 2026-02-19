@@ -2,6 +2,7 @@ import BottomNav from "@/components/ui/bottom-nav";
 import { fetchPerformanceById } from "@/lib/performances/repository";
 import { getDDay } from "@/lib/utils/dday";
 import { CalendarDays, MapPin } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -21,6 +22,7 @@ function formatDateByLocale(date: string, locale: "ko" | "zh-TW") {
 
 export default async function ConcertDetailPage({ params }: Props) {
   const { locale, concertId } = await params;
+  const t = await getTranslations("ConcertDetail");
   const concert = await fetchPerformanceById(concertId);
   if (!concert) notFound();
 
@@ -41,11 +43,11 @@ export default async function ConcertDetailPage({ params }: Props) {
         </div>
 
         <div className="p-5">
-          <div className="mb-2 inline-flex rounded-full bg-[#FF2E63]/10 px-2.5 py-1 text-xs font-bold text-[#FF2E63]">{dday <= 0 ? "D-Day" : `D-${dday}`}</div>
-          <h1 className="text-2xl font-extrabold text-[#1D2742]">{title}</h1>
-          <p className="mt-1 text-sm text-[#4B587C]">{concert.artist_name ?? "-"}</p>
+          <div className="mb-2 inline-flex rounded-full bg-[#FF2E63]/10 px-2.5 py-1 text-xs font-semibold text-[#FF2E63]">{dday <= 0 ? t("dday") : `D-${dday}`}</div>
+          <h1 className="text-2xl font-semibold text-[#1D2742]">{title}</h1>
+          <p className="text-cjk-body mt-1 text-sm font-normal text-[#4B587C]">{concert.artist_name ?? "-"}</p>
 
-          <div className="mt-4 space-y-2 text-sm text-[#4B587C]">
+          <div className="text-cjk-body mt-4 space-y-2 text-sm font-normal text-[#4B587C]">
             <p className="flex items-center gap-1">
               <CalendarDays className="h-4 w-4" />
               {formatDateByLocale(concert.start_date, locale)}
@@ -64,11 +66,11 @@ export default async function ConcertDetailPage({ params }: Props) {
                 rel="noreferrer"
                 className="inline-flex items-center justify-center rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white"
               >
-                티켓 예매하기（訂票）
+                {t("ticketCta")}
               </a>
             ) : (
               <span className="inline-flex items-center justify-center rounded-lg bg-[#EEF1F8] px-3 py-2 text-sm font-semibold text-[#4B587C]">
-                {locale === "ko" ? "커밍쑨" : "即將上線"}
+                {t("comingSoon")}
               </span>
             )}
 
@@ -76,7 +78,7 @@ export default async function ConcertDetailPage({ params }: Props) {
               href={`/${locale}/services/luggage?concertId=${concert.id}`}
               className="inline-flex items-center justify-center rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-900"
             >
-              짐 보관·이동
+              {t("luggageCta")}
             </a>
           </div>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
 
 const SUPPORTED_LOCALES = ["ko", "zh-TW"] as const;
 type SupportedLocale = (typeof SUPPORTED_LOCALES)[number];
@@ -12,9 +13,15 @@ type Props = {
 export default function LanguageToggle({ current }: Props) {
   const pathname = usePathname();
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const switchLocale = (nextLocale: SupportedLocale) => {
-    router.replace(pathname, { locale: nextLocale });
+    const query = Object.fromEntries(searchParams.entries());
+    if (Object.keys(query).length === 0) {
+      router.replace(pathname, { locale: nextLocale });
+      return;
+    }
+    router.replace({ pathname, query }, { locale: nextLocale });
   };
 
   return (
