@@ -21,6 +21,7 @@ export type Performance = {
   artist_name: string | null;
   start_date: string;
   end_date: string | null;
+  start_time?: string | null;
   venue_id: string;
   poster_url: string | null;
   status: PerformanceStatus;

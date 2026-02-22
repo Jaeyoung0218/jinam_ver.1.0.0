@@ -23,22 +23,15 @@ export default async function LocalizedDashboardPage({ params }: Props) {
   } as const;
 
   const cards = venueFiltered.all.sort((a, b) => a.start_date.localeCompare(b.start_date));
-  const quickMenus =
-    locale === "ko"
-      ? [
-          { icon: Mic2, label: "오늘 공연" },
-          { icon: Lock, label: "보관함 여유" },
-          { icon: MessageCircle, label: "LINE 현장 채팅" },
-        ]
-      : [
-          { icon: Mic2, label: "今日演唱會" },
-          { icon: Lock, label: "置物櫃剩餘量" },
-          { icon: MessageCircle, label: "LINE 現場聊天室" },
-        ];
-  const sectionTitle = locale === "ko" ? "가까운 공연 일정" : "近期熱門公演";
+  const quickMenus = [
+    { icon: Mic2, label: t("quickMenuToday") },
+    { icon: Lock, label: t("quickMenuLocker") },
+    { icon: MessageCircle, label: t("quickMenuLine") },
+  ];
+  const sectionTitle = t("nearbyConcerts");
 
   return (
-    <main className="mx-auto min-h-screen max-w-[430px] bg-[#F5F7FB] px-3 pb-28 pt-4">
+    <main className="mx-auto min-h-screen w-full max-w-[1200px] bg-[#F5F7FB] px-4 pb-28 pt-5 md:px-6 lg:px-8">
       <header className="mb-3 rounded-3xl border border-[#E2E8F5] bg-white px-4 py-3 shadow-[0_8px_20px_rgba(29,39,66,0.06)]">
         <div className="mb-3 flex items-center justify-between">
           <div>
@@ -81,7 +74,20 @@ export default async function LocalizedDashboardPage({ params }: Props) {
       <PerformanceCalendarBoard
         items={cards}
         locale={locale}
-        filterLabel={t("filterLabel")}
+        labels={{
+          monthView: t("monthView"),
+          prevYear: t("prevYear"),
+          nextYear: t("nextYear"),
+          detail: t("detail"),
+          empty: t("emptyMonth"),
+          dday: t("dday"),
+          ddayPrefix: t("ddayPrefix"),
+          viewImage: t("viewImage"),
+          viewText: t("viewText"),
+          viewCalendar: t("viewCalendar"),
+          noImage: t("noImage"),
+          timeLabel: t("timeLabel"),
+        }}
       />
 
       <BottomNav active="concerts" />

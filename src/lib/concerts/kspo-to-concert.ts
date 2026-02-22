@@ -1,12 +1,16 @@
-import kspoData from "@/data/kspo_concert_26_Q1.json";
 import type { Concert, Venue } from "@/types/concert";
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 
 type KspoItem = {
+  id?: string;
   name: string;
-  place: string;
-  date: string[];
-  time: string[];
-  link: string;
+  place?: string;
+  location?: string;
+  date?: string[];
+  time?: string[];
+  schedule?: Array<{ date: string; time?: string }>;
+  link?: string;
 };
 
 const PLACE_TO_VENUE: Record<string, Venue> = {
@@ -53,14 +57,15 @@ function slug(str: string): string {
 }
 
 function toConcert(item: KspoItem, index: number): Concert {
-  const dates = Array.isArray(item.date) ? item.date : [item.date];
-  const times = Array.isArray(item.time) ? item.time : [item.time];
+  const normalized = normalizeSchedule(item);
+  const dates = normalized.dates;
+  const times = normalized.times;
   const firstDate = dates[0] ?? "";
   const lastDate = dates[dates.length - 1] ?? firstDate;
   const startTime = times[0] ?? "19:00";
-  const venue = toVenue(item.place);
+  const venue = toVenue(item.place ?? item.location ?? "");
   const posterTone = POSTER_TONES[index % POSTER_TONES.length];
-  const base = `kspo-26-q1-${slug(item.name)}-${firstDate}`.replace(/--+/g, "-");
+  const base = item.id?.trim() || `kspo-26-q1-${slug(item.name)}-${firstDate}`.replace(/--+/g, "-");
   const id = base || `kspo-26-q1-${index}`;
 
   return {
@@ -81,12 +86,13 @@ function toConcert(item: KspoItem, index: number): Concert {
 
 /** KSPO 26 Q1 JSON을 Concert[]로 변환 (중복 제거) */
 export function getKspoConcerts(): Concert[] {
-  const items = (kspoData as { concerts: KspoItem[] }).concerts ?? [];
+  const items = loadKspoConcertItems();
   const seen = new Set<string>();
   const list: Concert[] = [];
   let index = 0;
   for (const item of items) {
-    const key = `${item.name}|${item.place}|${(item.date ?? [])[0] ?? ""}`;
+    const firstDate = normalizeSchedule(item).dates[0] ?? "";
+    const key = `${item.name}|${item.place ?? item.location ?? ""}|${firstDate}`;
     if (seen.has(key)) continue;
     seen.add(key);
     list.push(toConcert(item, index));
@@ -97,3 +103,65 @@ export function getKspoConcerts(): Concert[] {
 
 /** 페이지에서 사용할 KSPO 콘서트 목록 (캐시) */
 export const kspoConcerts = getKspoConcerts();
+
+function normalizeSchedule(item: KspoItem): { dates: string[]; times: string[] } {
+  if (Array.isArray(item.schedule) && item.schedule.length > 0) {
+    return {
+      dates: item.schedule.map((s) => s.date).filter(Boolean),
+      times: item.schedule.map((s) => s.time ?? "").filter(Boolean),
+    };
+  }
+  return {
+    dates: Array.isArray(item.date) ? item.date.filter(Boolean) : [],
+    times: Array.isArray(item.time) ? item.time.filter(Boolean) : [],
+  };
+}
+
+function loadKspoConcertItems(): KspoItem[] {
+  const path = join(process.cwd(), "src", "data", "kspo_concert_26_Q1.json");
+  if (!existsSync(path)) return [];
+  const raw = readFileSync(path, "utf-8");
+  const cleaned = raw
+    .split(/\r?\n/)
+    .map((line) => (line.trimStart().startsWith("//") ? "" : line))
+    .join("\n");
+  const first = extractFirstJsonObject(cleaned);
+  if (!first) return [];
+  try {
+    const parsed = JSON.parse(first) as { concerts?: KspoItem[] };
+    return Array.isArray(parsed.concerts) ? parsed.concerts : [];
+  } catch {
+    return [];
+  }
+}
+
+function extractFirstJsonObject(input: string): string | null {
+  const start = input.indexOf("{");
+  if (start < 0) return null;
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+  for (let i = start; i < input.length; i += 1) {
+    const ch = input[i];
+    if (inString) {
+      if (escaped) {
+        escaped = false;
+      } else if (ch === "\\") {
+        escaped = true;
+      } else if (ch === "\"") {
+        inString = false;
+      }
+      continue;
+    }
+    if (ch === "\"") {
+      inString = true;
+      continue;
+    }
+    if (ch === "{") depth += 1;
+    if (ch === "}") {
+      depth -= 1;
+      if (depth === 0) return input.slice(start, i + 1);
+    }
+  }
+  return null;
+}
