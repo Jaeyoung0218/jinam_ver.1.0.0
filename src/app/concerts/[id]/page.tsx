@@ -1,4 +1,4 @@
-import concerts from "@/data/concerts.json";
+import { getKspoConcerts } from "@/lib/concerts/kspo-to-concert";
 import CopyAddressButton from "@/components/ui/copy-address-button";
 import { NOTION_SURVIVAL_MAP_URL } from "@/constants/links";
 import type { Concert } from "@/types/concert";
@@ -16,13 +16,13 @@ function toLocaleDate(dateString: string) {
 }
 
 export function generateStaticParams() {
-  const list = concerts as Concert[];
+  const list = getKspoConcerts();
   return list.map((item) => ({ id: item.id }));
 }
 
 export default async function ConcertDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const concert = (concerts as Concert[]).find((item) => item.id === id);
+  const concert = getKspoConcerts().find((item) => item.id === id);
   if (!concert) notFound();
   const ticketUrl = concert.worldNolTicketUrl ?? concert.yes24TicketUrl ?? concert.ticketUrl;
   const koreanAddress = concert.koreanAddress ?? "서울특별시 송파구 올림픽로 424";

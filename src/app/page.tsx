@@ -1,6 +1,6 @@
 "use client";
 
-import concerts from "@/data/concerts.json";
+import { kspoConcerts } from "@/lib/concerts/kspo-to-concert";
 import BottomNav from "@/components/ui/bottom-nav";
 import SurvivalMapFab from "@/components/concert/survival-map-fab";
 import LockerWidget from "@/components/map/locker-widget";
@@ -176,7 +176,7 @@ export default function Home() {
   const textTracking = isZhTw ? "tracking-wider leading-relaxed" : "tracking-normal leading-normal";
   const liveConcerts = useMemo(() => {
     const now = new Date();
-    return (concerts as Concert[]).filter((concert) => now < getConcertExpiryAt(concert));
+    return kspoConcerts.filter((concert) => now < getConcertExpiryAt(concert));
   }, []);
 
   const filteredConcerts = useMemo(() => {
@@ -297,7 +297,7 @@ export default function Home() {
 
       <section className="mb-5">
         <a
-          href={(concerts as Concert[])[0]?.lineOpenChatUrl}
+          href={kspoConcerts[0]?.lineOpenChatUrl}
           target="_blank"
           rel="noreferrer"
           className="surface-card flex items-center justify-between p-4 transition hover:-translate-y-0.5"
@@ -380,7 +380,7 @@ export default function Home() {
       </section>
 
       <LockerWidget
-        lineUrl={(concerts as Concert[])[0]?.lineOpenChatUrl}
+        lineUrl={kspoConcerts[0]?.lineOpenChatUrl}
         locale={locale}
         labels={{
           title: text.lockerTitle,

@@ -1,11 +1,11 @@
 import BottomNav from "@/components/ui/bottom-nav";
 import { NOTION_SURVIVAL_MAP_URL } from "@/constants/links";
-import concerts from "@/data/concerts.json";
+import { getKspoConcerts } from "@/lib/concerts/kspo-to-concert";
 import type { Concert } from "@/types/concert";
 import Link from "next/link";
 
 export default function GuidePage() {
-  const list = concerts as Concert[];
+  const list = getKspoConcerts() as Concert[];
 
   return (
     <main className="mx-auto min-h-screen max-w-[760px] bg-[#F5F7FB] px-5 pb-28 pt-5">
